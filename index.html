@@ -311,24 +311,25 @@ body.light .voice-cancel:hover{background:#EEF0FF;color:#5B4FCF}
 .rec-fu{margin:4px 14px 14px;padding:11px 14px;background:linear-gradient(135deg,rgba(139,124,248,.12),rgba(108,92,231,.07));border-radius:10px;font-size:12px;color:#a78bfa;font-weight:700;border:1px solid rgba(139,124,248,.2)}
 
 /* ─── Timeline Card ─────────────────────── */
-.tl-list{position:relative;padding:6px 0 12px}
-.tl-list::before{content:'';position:absolute;left:50%;top:0;bottom:0;width:5px;transform:translateX(-50%);background:linear-gradient(180deg,#f59e0b 0%,#f97316 15%,#22c55e 30%,#10b981 46%,#06b6d4 60%,#3b82f6 75%,#8b5cf6 88%,#a855f7 100%);border-radius:3px;z-index:0}
-.tl-step{position:relative;min-height:64px}
-.tl-step::after{content:'';position:absolute;top:27px;height:1.5px;width:12px;background:var(--tl-c,rgba(255,255,255,.4));z-index:1;border-radius:1px;opacity:.7}
-.tl-step.r::after{left:calc(50% + 18px)}
-.tl-step.l::after{right:calc(50% + 18px)}
-.tl-dot-wrap{position:absolute;left:50%;top:8px;transform:translateX(-50%);z-index:2}
-.tl-dot{width:36px;height:36px;border-radius:50%;background:var(--tl-c,rgba(255,255,255,.25));border:3px solid rgba(255,255,255,.88);box-shadow:0 0 0 3px var(--tl-g,rgba(255,255,255,.12)),0 4px 16px rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:white;flex-shrink:0}
-.tl-step.hi .tl-dot{width:42px;height:42px;border-width:3px;margin-left:-3px;margin-top:-3px;font-size:13px;box-shadow:0 0 0 5px var(--tl-g),0 6px 24px var(--tl-g)}
-.tl-content{position:relative;padding-bottom:18px;padding-top:6px}
-.tl-step.r .tl-content{padding-left:calc(50% + 30px);padding-right:18px}
-.tl-step.l .tl-content{padding-right:calc(50% + 30px);padding-left:18px}
-.tl-icon{font-size:18px;margin-bottom:2px;display:block;line-height:1.2}
-.tl-date{font-family:var(--font-mono);font-size:9.5px;font-weight:800;color:var(--tl-c,rgba(162,155,254,.6));letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;display:block}
-.tl-label{font-size:12.5px;font-weight:700;color:#e8e8f0;line-height:1.35;margin-bottom:2px}
-.tl-step.hi .tl-label{color:var(--tl-c,#a09aff)}
-.tl-tip{font-size:11px;color:rgba(180,180,220,.55);line-height:1.55}
-.tl-step.hi .tl-tip{color:rgba(210,200,255,.72)}
+@keyframes tl-in{from{opacity:0;transform:translateX(-10px)}to{opacity:1;transform:none}}
+@keyframes tl-pulse{0%,100%{box-shadow:0 0 0 5px var(--tl-g),0 6px 20px var(--tl-c)}50%{box-shadow:0 0 0 10px transparent,0 12px 32px var(--tl-c)}}
+.tl-list{position:relative;padding:6px 0 10px}
+.tl-list::before{content:'';position:absolute;left:30px;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#f59e0b,#f97316 15%,#22c55e 30%,#10b981 46%,#06b6d4 60%,#3b82f6 75%,#8b5cf6 88%,#a855f7);border-radius:3px;z-index:0}
+.tl-step{position:relative;padding:10px 18px 11px 70px;animation:tl-in .42s ease both}
+.tl-step:nth-child(1){animation-delay:.05s}.tl-step:nth-child(2){animation-delay:.12s}.tl-step:nth-child(3){animation-delay:.19s}.tl-step:nth-child(4){animation-delay:.26s}.tl-step:nth-child(5){animation-delay:.33s}.tl-step:nth-child(6){animation-delay:.40s}.tl-step:nth-child(7){animation-delay:.47s}.tl-step:nth-child(8){animation-delay:.54s}
+.tl-step+.tl-step{border-top:1px solid rgba(255,255,255,.04)}
+.tl-step.hi{background:var(--tl-bg);border-radius:12px;border-top:none;margin:5px 6px;padding-left:64px;padding-top:13px;padding-bottom:13px}
+.tl-step.hi+.tl-step{border-top:none}
+.tl-step:not(.hi):hover{background:rgba(255,255,255,.025);border-radius:10px;transition:background .15s}
+.tl-dot-wrap{position:absolute;left:30px;top:11px;transform:translateX(-50%);z-index:2}
+.tl-step.hi .tl-dot-wrap{top:14px}
+.tl-dot{width:36px;height:36px;border-radius:50%;background:var(--tl-c);border:2.5px solid rgba(255,255,255,.88);box-shadow:0 0 0 3px var(--tl-g),0 4px 14px rgba(0,0,0,.3);display:flex;align-items:center;justify-content:center;font-size:16px;line-height:1;flex-shrink:0}
+.tl-step.hi .tl-dot{width:40px;height:40px;margin-left:-2px;font-size:18px;box-shadow:0 0 0 5px var(--tl-g),0 6px 20px var(--tl-c);animation:tl-pulse 2.5s ease-in-out infinite}
+.tl-date{display:inline-block;font-family:var(--font-mono);font-size:9px;font-weight:800;color:var(--tl-c);letter-spacing:1.5px;text-transform:uppercase;background:var(--tl-bg);padding:2px 8px;border-radius:99px;border:1px solid var(--tl-g);margin-bottom:5px}
+.tl-label{font-size:13.5px;font-weight:700;color:#e8e8f0;line-height:1.35;margin-bottom:3px}
+.tl-step.hi .tl-label{color:var(--tl-c);font-size:14px}
+.tl-tip{font-size:11.5px;color:rgba(180,180,220,.56);line-height:1.6}
+.tl-step.hi .tl-tip{color:rgba(220,208,255,.72)}
 
 /* ─── Checklist Card ────────────────────── */
 .ck-body{padding:0 0 6px}
@@ -577,12 +578,13 @@ body.light .rec-card{background:white;border-color:#F4F4FA}
 body.light .rec-card:hover{box-shadow:0 12px 32px rgba(41,121,255,.15)}
 body.light .rec-match-track{background:#e5e7eb}
 body.light .rec-fu{background:linear-gradient(135deg,#EEF0FF,#eef4ff);color:#5B4FCF;border-color:#C7C3F5}
-body.light .tl-list::before{opacity:.55}
-body.light .tl-step::after{opacity:.6}
-body.light .tl-dot{box-shadow:0 0 0 4px var(--tl-g,rgba(91,79,207,.18)),0 4px 14px rgba(0,0,0,.1)}
-body.light .tl-step.hi .tl-dot{box-shadow:0 0 0 5px var(--tl-g,rgba(91,79,207,.22)),0 8px 22px var(--tl-g,rgba(0,0,0,.14))}
+body.light .tl-list::before{opacity:.75}
+body.light .tl-dot{border-color:white;box-shadow:0 0 0 3px var(--tl-g),0 4px 14px rgba(0,0,0,.12)}
+body.light .tl-step.hi .tl-dot{box-shadow:0 0 0 5px var(--tl-g),0 6px 20px rgba(0,0,0,.15)}
+body.light .tl-step.hi{background:var(--tl-bg)}
+body.light .tl-step+.tl-step{border-top-color:rgba(0,0,0,.05)}
 body.light .tl-label{color:#1A1A2E}
-body.light .tl-step.hi .tl-label{color:var(--tl-c,#3d339e)}
+body.light .tl-step.hi .tl-label{color:var(--tl-c)}
 body.light .tl-tip{color:#6E6E8A}
 body.light .tl-step.hi .tl-tip{color:#3d339e}
 body.light .ck-section{border-bottom-color:#F4F4FA}
@@ -625,7 +627,7 @@ body.light .ci-mid-label{color:#6E6E8A}
 body.light .r-based{color:#6E6E8A}
 body.light .rec-school-name{color:#1A1A2E}
 body.light .rec-why{color:#6E6E8A}
-body.light .tl-date{color:#5B4FCF}
+body.light .tl-date{color:var(--tl-c);background:var(--tl-bg);border-color:var(--tl-g)}
 body.light .snap-meta{color:#6E6E8A}
 body.light .snap-stat-lbl{color:#6E6E8A}
 body.light .snap-stat-val{color:#1A1A2E}
@@ -1352,18 +1354,12 @@ function renderTimeline(d) {
   ];
   const steps=(d.steps||[]).map((s,i)=>{
     const col=COLS[i%COLS.length];
-    const side=i%2===0?'r':'l';
-    const content=`
-      <div class="tl-content">
-        <span class="tl-icon">${esc(s.icon||'📌')}</span>
-        <span class="tl-date">${esc(s.date)}</span>
-        <div class="tl-label">${esc(s.label)}</div>
-        ${s.tip?`<div class="tl-tip">${esc(s.tip)}</div>`:''}
-      </div>`;
     return `
-    <div class="tl-step ${side}${s.highlight?' hi':''}" style="--tl-c:${col.c};--tl-g:${col.g};--tl-bg:${col.bg}">
-      <div class="tl-dot-wrap"><div class="tl-dot">${i+1}</div></div>
-      ${content}
+    <div class="tl-step${s.highlight?' hi':''}" style="--tl-c:${col.c};--tl-g:${col.g};--tl-bg:${col.bg}">
+      <div class="tl-dot-wrap"><div class="tl-dot">${esc(s.icon||'📌')}</div></div>
+      <span class="tl-date">${esc(s.date)}</span>
+      <div class="tl-label">${esc(s.label)}</div>
+      ${s.tip?`<div class="tl-tip">${esc(s.tip)}</div>`:''}
     </div>`;
   }).join('');
   const c=document.createElement('div');c.className='vc';
