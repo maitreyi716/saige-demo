@@ -313,12 +313,12 @@ body.light .voice-cancel:hover{background:#EEF0FF;color:#5B4FCF}
 /* ─── Timeline Card ─────────────────────── */
 .tl-list{padding:10px 0 4px}
 .tl-step{display:grid;grid-template-columns:1fr 52px 1fr;position:relative}
-.tl-spine-col{grid-column:2;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;padding-top:8px}
+.tl-spine-col{grid-column:2;grid-row:1;display:flex;flex-direction:column;align-items:center;position:relative;z-index:1;padding-top:8px}
 .tl-spine-col::after{content:'';position:absolute;top:50px;bottom:-4px;width:3px;left:50%;transform:translateX(-50%);background:linear-gradient(180deg,var(--tl-c,rgba(255,255,255,.18)) 0%,rgba(255,255,255,.03) 100%);border-radius:2px}
 .tl-step:last-child .tl-spine-col::after{display:none}
 .tl-dot{width:38px;height:38px;border-radius:50%;background:var(--tl-c,rgba(255,255,255,.2));box-shadow:0 0 0 4px var(--tl-g,rgba(255,255,255,.1)),0 4px 18px rgba(0,0,0,.4);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:white;flex-shrink:0}
 .tl-step.hi .tl-dot{width:44px;height:44px;font-size:13px;box-shadow:0 0 0 5px var(--tl-g,rgba(255,255,255,.15)),0 8px 28px var(--tl-g,rgba(0,0,0,.45));margin:-3px}
-.tl-content{padding:4px 18px 24px;position:relative}
+.tl-content{grid-row:1;padding:4px 18px 24px;position:relative}
 .tl-step.r .tl-content{grid-column:3}
 .tl-step.l .tl-content{grid-column:1}
 .tl-step.r .tl-content::before{content:'';position:absolute;top:28px;left:0;width:16px;height:2px;background:linear-gradient(90deg,var(--tl-c,rgba(255,255,255,.2)),transparent);border-radius:1px}
