@@ -67,15 +67,13 @@ body{font-family:var(--font-body);
 @keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
 
 /* ─── Follow-up cards ──────────────────── */
-.fu-wrap{display:flex;flex-direction:column;gap:6px;margin-top:2px;max-width:calc(100% - 46px)}
-.fu-label{font-size:10.5px;font-weight:700;color:var(--n500);text-transform:uppercase;letter-spacing:.07em;margin-bottom:2px}
-.fu-card{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;font-size:13px;color:var(--n700);transition:all .18s;text-align:left;width:100%;font-family:inherit;font-weight:500;line-height:1.4}
-.fu-card:hover{background:var(--brand-light);border-color:var(--brand-mid);color:var(--n900);transform:translateX(2px)}
-.fu-card:hover .fu-arrow{transform:translateX(3px);color:var(--brand)}
-.fu-card-text{flex:1}
-.fu-arrow{font-size:14px;color:var(--n500);transition:all .18s;flex-shrink:0}
-body.light .fu-card{background:white;border-color:rgba(91,79,207,.13);color:#3D3D5C;box-shadow:0 1px 4px rgba(0,0,0,.04)}
-body.light .fu-card:hover{background:#EEF0FF;border-color:rgba(91,79,207,.3);color:#1A1A2E;box-shadow:0 2px 10px rgba(91,79,207,.12)}
+.fu-wrap{display:flex;flex-direction:row;flex-wrap:wrap;gap:7px;margin-top:4px;max-width:calc(100% - 46px)}
+.fu-card{display:inline-flex;align-items:center;gap:6px;padding:7px 13px;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:99px;cursor:pointer;font-size:12px;color:var(--n700);transition:all .18s;font-family:inherit;font-weight:600;white-space:nowrap;line-height:1.3}
+.fu-card:hover{background:var(--brand-light);border-color:var(--brand-mid);color:var(--n900);transform:translateY(-1px);box-shadow:0 3px 10px rgba(108,92,231,.18)}
+.fu-card:hover .fu-arrow{color:var(--brand)}
+.fu-arrow{font-size:11px;color:var(--n500);transition:color .18s;opacity:.7}
+body.light .fu-card{background:white;border-color:rgba(91,79,207,.15);color:#3D3D5C;box-shadow:0 1px 4px rgba(0,0,0,.05)}
+body.light .fu-card:hover{background:#EEF0FF;border-color:rgba(91,79,207,.35);color:#1A1A2E;box-shadow:0 3px 12px rgba(91,79,207,.14)}
 body.light .fu-arrow{color:#9898b8}
 body.light .fu-card:hover .fu-arrow{color:#5B4FCF}
 
@@ -370,17 +368,23 @@ body.light .voice-cancel:hover{background:#EEF0FF;color:#5B4FCF}
 .snap-tip-icon{font-size:16px;flex-shrink:0;margin-top:1px}
 
 /* ─── Tips Card ─────────────────────────── */
-.tips-intro{padding:14px 18px;font-size:13px;color:#c0c0e0;line-height:1.65;border-bottom:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03)}
-.tip-list{padding:8px 0}
-.tip-item{display:flex;gap:13px;padding:12px 18px;border-bottom:1px solid rgba(255,255,255,.06);align-items:flex-start;transition:background .12s}
-.tip-item:last-child{border-bottom:none}
-.tip-item:hover{background:rgba(255,255,255,.03)}
-.tip-emoji-wrap{width:38px;height:38px;border-radius:11px;background:rgba(139,124,248,.12);border:1px solid rgba(139,124,248,.2);display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+@keyframes tip-in{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tips-intro{padding:13px 18px;font-size:13px;color:#b0b0d0;line-height:1.65;border-bottom:1px solid rgba(255,255,255,.07)}
+.tip-list{padding:10px 14px 12px;display:flex;flex-direction:column;gap:8px}
+.tip-item{position:relative;display:flex;gap:12px;padding:13px 14px 13px 17px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:12px;align-items:flex-start;animation:tip-in .4s ease both;transition:background .12s,border-color .12s;overflow:hidden}
+.tip-item::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--tip-c,#8b5cf6)}
+.tip-item:nth-child(1){--tip-c:#8b5cf6;animation-delay:.06s}
+.tip-item:nth-child(2){--tip-c:#3b82f6;animation-delay:.15s}
+.tip-item:nth-child(3){--tip-c:#06b6d4;animation-delay:.24s}
+.tip-item:nth-child(4){--tip-c:#10b981;animation-delay:.33s}
+.tip-item:hover{background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.1)}
+.tip-num{font-family:var(--font-mono);font-size:9px;font-weight:900;color:var(--tip-c);letter-spacing:.03em;padding-top:2px;flex-shrink:0;min-width:18px;opacity:.8}
+.tip-emoji-wrap{font-size:20px;line-height:1;flex-shrink:0;margin-top:-1px}
 .tip-body-wrap{flex:1;min-width:0}
-.tip-label{font-family:'Lato',sans-serif;font-size:13.5px;font-weight:700;color:#e8e8f0;margin-bottom:4px;line-height:1.3;letter-spacing:0}
-.tip-body{font-size:12.5px;color:#c0c0e0;line-height:1.6}
-.tips-callout{margin:0 18px 14px;padding:13px 15px;background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(245,158,11,.06));border-radius:12px;border:1px solid rgba(251,191,36,.25);font-size:12.5px;color:#fde68a;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
-.tips-callout-icon{font-size:16px;flex-shrink:0;margin-top:1px}
+.tip-label{font-size:13.5px;font-weight:700;color:#e8e8f0;margin-bottom:5px;line-height:1.3}
+.tip-body{font-size:12px;color:#9898b8;line-height:1.65}
+.tips-callout{margin:0 14px 14px;padding:12px 14px;background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(245,158,11,.06));border-radius:10px;border:1px solid rgba(251,191,36,.25);font-size:12px;color:#fde68a;line-height:1.6;display:flex;gap:10px;align-items:flex-start}
+.tips-callout-icon{font-size:15px;flex-shrink:0;margin-top:1px}
 
 /* ─── Structured Text Card ──────────────── */
 .st-body{padding:6px 0 10px}
@@ -414,13 +418,32 @@ body.light .tts-btn:hover{background:#e4e0ff;border-color:#a29bfe;box-shadow:0 2
 body.light .tts-btn.playing{background:#e4e0ff;border-color:#5B4FCF;color:#4338ca}
 
 /* ─── Add to list button ────────────────────────────── */
-.add-list-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:99px;background:rgba(108,92,231,.08);border:1.5px solid rgba(108,92,231,.22);color:#a29bfe;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .18s;font-family:var(--font-body);letter-spacing:.01em;white-space:nowrap;margin-top:8px;flex-shrink:0}
-.add-list-btn:hover{background:rgba(108,92,231,.16);border-color:rgba(108,92,231,.42);color:#c4b5fd;transform:translateY(-1px);box-shadow:0 3px 12px rgba(108,92,231,.18)}
-.add-list-btn.added{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.28);color:#4ade80}
-.add-list-btn.added:hover{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.45);color:#86efac}
+.list-wrap{position:relative;display:inline-block;margin-top:8px;flex-shrink:0}
+.add-list-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:99px;background:rgba(108,92,231,.08);border:1.5px solid rgba(108,92,231,.22);color:#a29bfe;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .18s;font-family:var(--font-body);white-space:nowrap}
+.add-list-btn:hover,.add-list-btn.open{background:rgba(108,92,231,.16);border-color:rgba(108,92,231,.42);color:#c4b5fd}
+.add-list-btn.selected-shortlist{background:rgba(168,85,247,.12);border-color:rgba(168,85,247,.35);color:#c084fc}
+.add-list-btn.selected-longlist{background:rgba(59,130,246,.12);border-color:rgba(59,130,246,.35);color:#60a5fa}
+.add-list-btn.selected-applying{background:rgba(34,197,94,.12);border-color:rgba(34,197,94,.35);color:#4ade80}
+.list-dropdown{position:fixed;background:#1c1c30;border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:6px;display:none;min-width:170px;box-shadow:0 12px 40px rgba(0,0,0,.6);z-index:9999}
+.list-dropdown.open{display:block;animation:dd-in .15s ease}
+@keyframes dd-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.list-option{display:flex;align-items:center;gap:9px;padding:8px 10px;border-radius:9px;cursor:pointer;font-size:12.5px;color:#c0c0e0;transition:background .1s;font-family:var(--font-body);font-weight:500;border:none;background:transparent;width:100%;text-align:left}
+.list-option:hover{background:rgba(255,255,255,.07);color:#e8e8f0}
+.list-option.active{background:rgba(108,92,231,.15);color:#c4b5fd}
+.list-option-icon{font-size:14px;width:20px;text-align:center;flex-shrink:0}
+.list-remove{display:flex;align-items:center;gap:6px;padding:6px 10px;border-radius:8px;cursor:pointer;font-size:11.5px;color:rgba(180,180,220,.38);transition:all .1s;font-family:var(--font-body);font-weight:500;border:none;background:transparent;width:100%;text-align:left;margin-top:2px;border-top:1px solid rgba(255,255,255,.06);padding-top:8px}
+.list-remove:hover{color:rgba(248,113,113,.7);background:rgba(248,113,113,.06)}
 body.light .add-list-btn{background:#EEF0FF;border-color:#C7C3F5;color:#5B4FCF}
-body.light .add-list-btn:hover{background:#e4e0ff;border-color:#a29bfe;box-shadow:0 3px 12px rgba(91,79,207,.14)}
-body.light .add-list-btn.added{background:#dcfce7;border-color:#bbf7d0;color:#15803d}
+body.light .add-list-btn:hover,.add-list-btn.open{background:#e4e0ff;border-color:#a29bfe}
+body.light .add-list-btn.selected-shortlist{background:#f3e8ff;border-color:#d8b4fe;color:#7c3aed}
+body.light .add-list-btn.selected-longlist{background:#eff6ff;border-color:#93c5fd;color:#1d4ed8}
+body.light .add-list-btn.selected-applying{background:#dcfce7;border-color:#86efac;color:#15803d}
+body.light .list-dropdown{background:white;border-color:#e5e7eb;box-shadow:0 8px 30px rgba(0,0,0,.12)}
+body.light .list-option{color:#3D3D5C}
+body.light .list-option:hover{background:#F4F4FA}
+body.light .list-option.active{background:#EEF0FF;color:#5B4FCF}
+body.light .list-remove{color:#9898B8;border-top-color:#F0F0F8}
+body.light .list-remove:hover{color:#dc2626;background:#fef2f2}
 
 /* ─── Video Call Overlay ─────────────────────────────── */
 .vcall-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(3,4,8,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column}
@@ -609,10 +632,11 @@ body.light .snap-stat{border-right-color:#F4F4FA}
 body.light .snap-section{border-bottom-color:#F4F4FA}
 body.light .snap-vibe{color:#3D3D5C;border-bottom-color:#F4F4FA}
 body.light .snap-tip{background:linear-gradient(135deg,#EEF0FF,#eef4ff);border-color:#C7C3F5;color:#3d339e}
-body.light .tips-intro{background:#FAFAFD;color:#3D3D5C;border-bottom-color:#F4F4FA}
-body.light .tip-emoji-wrap{background:#EEF0FF;border-color:#C7C3F5}
-body.light .tip-item{border-bottom-color:#F4F4FA}
-body.light .tip-item:hover{background:#FAFAFD}
+body.light .tips-intro{color:#3D3D5C;border-bottom-color:#F4F4FA}
+body.light .tip-item{background:white;border-color:#EDEDF8}
+body.light .tip-item:hover{background:#FAFAFD;border-color:#d8d8f0}
+body.light .tip-label{color:#1A1A2E}
+body.light .tip-body{color:#4D4D6A}
 body.light .tips-callout{background:linear-gradient(135deg,#fef3c7,#fffbeb);border-color:#fde68a;color:#92400e}
 body.light .st-section+.st-section{border-top-color:#F4F4FA}
 body.light .st-heading{color:#3D3D5C}
@@ -1184,27 +1208,66 @@ function esc(t){return String(t??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').
 function badgeH(lv){const m={strong:'✓ Strong Fit',moderate:'~ Moderate Fit',reach:'↑ Reach School'};return`<span class="badge ${lv}">${m[lv]||lv}</span>`}
 
 // ── Add-to-list ───────────────────────────────────────────────
-const myList = new Set();
+const myLists = new Map(); // schoolName → 'shortlist'|'longlist'|'applying'
+const LIST_OPTIONS = [
+  {key:'shortlist', icon:'⭐', label:'Shortlist'},
+  {key:'longlist',  icon:'📋', label:'Longlist'},
+  {key:'applying',  icon:'✈️', label:'Applying'},
+];
 function makeAddBtn(schoolName) {
+  const wrap = document.createElement('div');
+  wrap.className = 'list-wrap';
   const btn = document.createElement('button');
-  const isAdded = myList.has(schoolName);
-  btn.className = 'add-list-btn' + (isAdded ? ' added' : '');
-  btn.innerHTML = isAdded
-    ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Added to list`
-    : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to your list`;
+  const dd = document.createElement('div');
+  dd.className = 'list-dropdown';
+  document.body.appendChild(dd); // escape overflow:hidden parents
+
+  function renderBtn() {
+    const sel = myLists.get(schoolName);
+    const opt = LIST_OPTIONS.find(o => o.key === sel);
+    btn.className = 'add-list-btn' + (opt ? ` selected-${opt.key}` : '');
+    btn.innerHTML = opt
+      ? `${opt.icon} ${opt.label} <span style="opacity:.55;font-size:10px">▾</span>`
+      : `<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to list <span style="opacity:.55;font-size:10px">▾</span>`;
+  }
+
+  function positionDD() {
+    const r = btn.getBoundingClientRect();
+    dd.style.top = (r.bottom + 6) + 'px';
+    dd.style.left = r.left + 'px';
+  }
+
+  function buildDropdown() {
+    dd.innerHTML = '';
+    const sel = myLists.get(schoolName);
+    LIST_OPTIONS.forEach(opt => {
+      const row = document.createElement('button');
+      row.className = 'list-option' + (sel === opt.key ? ' active' : '');
+      row.innerHTML = `<span class="list-option-icon">${opt.icon}</span>${opt.label}`;
+      row.onclick = (e) => { e.stopPropagation(); myLists.set(schoolName, opt.key); renderBtn(); buildDropdown(); dd.classList.remove('open'); btn.classList.remove('open'); };
+      dd.appendChild(row);
+    });
+    if (sel) {
+      const rm = document.createElement('button');
+      rm.className = 'list-remove';
+      rm.innerHTML = `<span class="list-option-icon">✕</span>Remove from list`;
+      rm.onclick = (e) => { e.stopPropagation(); myLists.delete(schoolName); renderBtn(); dd.classList.remove('open'); btn.classList.remove('open'); };
+      dd.appendChild(rm);
+    }
+  }
+
   btn.onclick = (e) => {
     e.stopPropagation();
-    if (myList.has(schoolName)) {
-      myList.delete(schoolName);
-      btn.classList.remove('added');
-      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to your list`;
-    } else {
-      myList.add(schoolName);
-      btn.classList.add('added');
-      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Added to list`;
-    }
+    const isOpen = dd.classList.contains('open');
+    document.querySelectorAll('.list-dropdown.open').forEach(el => el.classList.remove('open'));
+    document.querySelectorAll('.add-list-btn.open').forEach(el => el.classList.remove('open'));
+    if (!isOpen) { buildDropdown(); positionDD(); dd.classList.add('open'); btn.classList.add('open'); }
   };
-  return btn;
+  document.addEventListener('click', () => { dd.classList.remove('open'); btn.classList.remove('open'); });
+
+  renderBtn();
+  wrap.appendChild(btn);
+  return wrap;
 }
 
 // ── Fit Assessment ───────────────────────────────────────────
@@ -1429,8 +1492,9 @@ function renderSnapshot(d) {
 
 // ── Tips Card ────────────────────────────────────────────────
 function renderTips(d) {
-  const items=(d.tips||[]).map(t=>`
+  const items=(d.tips||[]).map((t,i)=>`
     <div class="tip-item">
+      <span class="tip-num">0${i+1}</span>
       <div class="tip-emoji-wrap">${esc(t.emoji)}</div>
       <div class="tip-body-wrap">
         <div class="tip-label">${esc(t.label)}</div>
@@ -1862,7 +1926,7 @@ function send(){
     else{const b=document.createElement('div');b.className='bubble';b.innerHTML=`<p>${esc(String(resp.content||''))}</p>`;wrap.appendChild(b);}
     if(resp.data)addTtsButton(wrap,resp.data);
     document.getElementById('sb').disabled=false;
-    scrollBot();
+    setTimeout(()=>{ wrap.parentElement?.scrollIntoView({block:'start',behavior:'smooth'}); },60);
     // Follow-up cards as a second Saige message
     const followUps = resp.data && resp.data.followUps;
     if(followUps && followUps.length) {
