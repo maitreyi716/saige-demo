@@ -403,6 +403,15 @@ body.light .tts-btn{background:#EEF0FF;border-color:#C7C3F5;color:#5B4FCF}
 body.light .tts-btn:hover{background:#e4e0ff;border-color:#a29bfe;box-shadow:0 2px 12px rgba(91,79,207,.15)}
 body.light .tts-btn.playing{background:#e4e0ff;border-color:#5B4FCF;color:#4338ca}
 
+/* ─── Add to list button ────────────────────────────── */
+.add-list-btn{display:inline-flex;align-items:center;gap:6px;padding:6px 13px;border-radius:99px;background:rgba(108,92,231,.08);border:1.5px solid rgba(108,92,231,.22);color:#a29bfe;font-size:11.5px;font-weight:700;cursor:pointer;transition:all .18s;font-family:var(--font-body);letter-spacing:.01em;white-space:nowrap;margin-top:8px;flex-shrink:0}
+.add-list-btn:hover{background:rgba(108,92,231,.16);border-color:rgba(108,92,231,.42);color:#c4b5fd;transform:translateY(-1px);box-shadow:0 3px 12px rgba(108,92,231,.18)}
+.add-list-btn.added{background:rgba(34,197,94,.08);border-color:rgba(34,197,94,.28);color:#4ade80}
+.add-list-btn.added:hover{background:rgba(34,197,94,.14);border-color:rgba(34,197,94,.45);color:#86efac}
+body.light .add-list-btn{background:#EEF0FF;border-color:#C7C3F5;color:#5B4FCF}
+body.light .add-list-btn:hover{background:#e4e0ff;border-color:#a29bfe;box-shadow:0 3px 12px rgba(91,79,207,.14)}
+body.light .add-list-btn.added{background:#dcfce7;border-color:#bbf7d0;color:#15803d}
+
 /* ─── Video Call Overlay ─────────────────────────────── */
 .vcall-overlay{display:none;position:fixed;inset:0;z-index:200;background:rgba(3,4,8,.97);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);flex-direction:column}
 .vcall-overlay.open{display:flex}
@@ -1162,6 +1171,30 @@ function getResponse(q) {
 function esc(t){return String(t??'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
 function badgeH(lv){const m={strong:'✓ Strong Fit',moderate:'~ Moderate Fit',reach:'↑ Reach School'};return`<span class="badge ${lv}">${m[lv]||lv}</span>`}
 
+// ── Add-to-list ───────────────────────────────────────────────
+const myList = new Set();
+function makeAddBtn(schoolName) {
+  const btn = document.createElement('button');
+  const isAdded = myList.has(schoolName);
+  btn.className = 'add-list-btn' + (isAdded ? ' added' : '');
+  btn.innerHTML = isAdded
+    ? `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Added to list`
+    : `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to your list`;
+  btn.onclick = (e) => {
+    e.stopPropagation();
+    if (myList.has(schoolName)) {
+      myList.delete(schoolName);
+      btn.classList.remove('added');
+      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg> Add to your list`;
+    } else {
+      myList.add(schoolName);
+      btn.classList.add('added');
+      btn.innerHTML = `<svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Added to list`;
+    }
+  };
+  return btn;
+}
+
 // ── Fit Assessment ───────────────────────────────────────────
 function renderFit(d) {
   const ringColors={strong:'#22c55e',moderate:'#f59e0b',reach:'#ef4444'};
@@ -1203,6 +1236,7 @@ function renderFit(d) {
       <div class="signal-neg"><div class="sig-label neg">⚠ Watch out for</div><div class="sig-body neg">${esc(d.watchOut||'')}</div></div>
     </div>
     <div class="vc-note">Estimates only — always verify on the official admissions website.</div>`;
+  c.querySelector('.fit-school-info').appendChild(makeAddBtn(d.school));
   return c;
 }
 
@@ -1268,6 +1302,8 @@ function renderComp(d) {
       <div class="verdict-reasons">${(d.reasons||[]).map(r=>`<span class="verdict-chip">${esc(r)}</span>`).join('')}</div>
     </div>
     <div class="vc-note">Estimates only · Verify costs and deadlines on official school websites.</div>`;
+  c.querySelector('.ci-school-a').appendChild(makeAddBtn(a.name));
+  c.querySelector('.ci-school-b').appendChild(makeAddBtn(b.name));
   return c;
 }
 
@@ -1293,6 +1329,9 @@ function renderRec(d) {
     <div class="r-prof"><span class="r-based">Based on</span>${tags}</div>
     <div class="rec-list">${cards}</div>
     ${d.followUp?`<div class="rec-fu">💡 ${esc(d.followUp)}</div>`:''}`;
+  c.querySelectorAll('.rec-card-body').forEach((body, i) => {
+    if (d.schools[i]) body.appendChild(makeAddBtn(d.schools[i].name));
+  });
   return c;
 }
 
@@ -1360,6 +1399,7 @@ function renderSnapshot(d) {
     <div class="snap-vibe">🏙️ ${esc(d.campusVibe)}</div>
     ${careers?`<div class="snap-section"><div class="section-label">Career paths from here</div><div class="pills">${careers}</div></div>`:''}
     ${d.quickTip?`<div class="snap-tip"><span class="snap-tip-icon">⚡</span><span>${esc(d.quickTip)}</span></div>`:''}`;
+  c.querySelector('.snap-hero').appendChild(makeAddBtn(d.name));
   return c;
 }
 
