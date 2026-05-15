@@ -332,19 +332,25 @@ body.light .voice-cancel:hover{background:#EEF0FF;color:#5B4FCF}
 .tl-step.hi .tl-tip{color:rgba(220,208,255,.72)}
 
 /* ─── Checklist Card ────────────────────── */
-.ck-body{padding:0 0 6px}
-.ck-section{border-bottom:1px solid rgba(255,255,255,.06)}
-.ck-section:last-child{border-bottom:none}
-.ck-section-label{font-size:10.5px;font-weight:800;color:rgba(180,180,220,.48);text-transform:uppercase;letter-spacing:.07em;padding:10px 18px 4px;background:rgba(255,255,255,.03)}
-.ck-item{display:flex;align-items:flex-start;gap:10px;padding:8px 18px;transition:background .12s}
-.ck-item:hover{background:rgba(255,255,255,.03)}
-.ck-check{width:18px;height:18px;border-radius:5px;flex-shrink:0;margin-top:1px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:900}
-.ck-check.req{background:linear-gradient(135deg,#4ade80,#15803d);color:white}
-.ck-check.opt{background:rgba(255,255,255,.08);border:1.5px solid rgba(255,255,255,.15);color:rgba(180,180,220,.6)}
-.ck-text{font-size:12.5px;color:#c0c0e0;line-height:1.5;flex:1}
-.ck-req-label{font-size:9.5px;font-weight:700;color:#4ade80;text-transform:uppercase;letter-spacing:.04em;margin-left:6px}
-.ck-opt-label{font-size:9.5px;font-weight:600;color:rgba(180,180,220,.48);text-transform:uppercase;letter-spacing:.04em;margin-left:6px}
-.ck-callout{margin:8px 18px 12px;padding:10px 14px;background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(245,158,11,.06));border-radius:10px;font-size:12px;color:#fde68a;border:1px solid rgba(251,191,36,.25);display:flex;gap:8px;align-items:flex-start;line-height:1.55}
+@keyframes ck-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.ck-body{padding:4px 0 8px}
+.ck-section{animation:ck-in .38s ease both;padding-bottom:2px}
+.ck-section:nth-child(1){animation-delay:.05s}.ck-section:nth-child(2){animation-delay:.15s}.ck-section:nth-child(3){animation-delay:.25s}.ck-section:nth-child(4){animation-delay:.35s}
+.ck-section+.ck-section{border-top:1px solid rgba(255,255,255,.05);padding-top:4px}
+.ck-section-label{display:flex;align-items:center;gap:8px;font-size:9.5px;font-weight:800;color:rgba(162,155,254,.6);text-transform:uppercase;letter-spacing:.1em;padding:10px 18px 5px}
+.ck-section-label::before{content:'';display:inline-block;width:14px;height:2px;background:var(--grad-main);border-radius:2px;flex-shrink:0}
+.ck-item{display:flex;align-items:center;gap:12px;padding:8px 12px;margin:1px 6px;transition:background .12s;border-radius:10px}
+.ck-item:hover{background:rgba(255,255,255,.04)}
+.ck-check{width:22px;height:22px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:900}
+.ck-check.req{background:linear-gradient(135deg,#4ade80,#16a34a);color:white;box-shadow:0 2px 10px rgba(34,197,94,.35)}
+.ck-check.opt{background:transparent;border:1.5px dashed rgba(180,180,220,.3);color:rgba(180,180,220,.4);font-size:10px}
+.ck-text{font-size:13px;line-height:1.4;flex:1}
+.ck-item.req-item .ck-text{color:#d8d8f0;font-weight:500}
+.ck-item.opt-item .ck-text{color:#9898b8;font-weight:400}
+.ck-badge{flex-shrink:0;font-size:8.5px;font-weight:800;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:99px;white-space:nowrap}
+.ck-badge.req-b{background:rgba(34,197,94,.12);color:#4ade80;border:1px solid rgba(34,197,94,.22)}
+.ck-badge.opt-b{background:rgba(180,180,220,.07);color:rgba(180,180,220,.38);border:1px solid rgba(180,180,220,.12)}
+.ck-callout{margin:8px 12px 12px;padding:11px 14px;background:linear-gradient(135deg,rgba(251,191,36,.1),rgba(245,158,11,.06));border-radius:10px;font-size:12px;color:#fde68a;border:1px solid rgba(251,191,36,.25);display:flex;gap:8px;align-items:flex-start;line-height:1.55}
 
 /* ─── School Snapshot Card ──────────────── */
 .snap-hero{padding:16px 18px 14px;border-bottom:1px solid rgba(255,255,255,.07)}
@@ -587,12 +593,14 @@ body.light .tl-label{color:#1A1A2E}
 body.light .tl-step.hi .tl-label{color:var(--tl-c)}
 body.light .tl-tip{color:#6E6E8A}
 body.light .tl-step.hi .tl-tip{color:#3d339e}
-body.light .ck-section{border-bottom-color:#F4F4FA}
-body.light .ck-section-label{background:#FAFAFD;color:#6E6E8A}
-body.light .ck-item:hover{background:#FAFAFD}
-body.light .ck-check.opt{background:#F4F4FA;border-color:#C5C5D9;color:#6E6E8A}
-body.light .ck-req-label{color:#15803d}
-body.light .ck-opt-label{color:#6E6E8A}
+body.light .ck-section+.ck-section{border-top-color:#EDEDF8}
+body.light .ck-section-label{color:#8080A8}
+body.light .ck-item:hover{background:#F6F6FD}
+body.light .ck-check.opt{border-color:#C5C5D9;color:#9898B8}
+body.light .ck-item.req-item .ck-text{color:#1A1A2E}
+body.light .ck-item.opt-item .ck-text{color:#6E6E8A}
+body.light .ck-badge.req-b{background:rgba(21,128,61,.1);color:#15803d;border-color:rgba(21,128,61,.22)}
+body.light .ck-badge.opt-b{background:#F4F4FA;color:#9898B8;border-color:#E0E0F0}
 body.light .ck-callout{background:linear-gradient(135deg,#fef9c3,#fefce8);color:#92400e;border-color:#fde68a}
 body.light .snap-hero{border-bottom-color:#F4F4FA}
 body.light .snap-name{background:linear-gradient(135deg,#2979FF,#5B4FCF);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
@@ -634,7 +642,6 @@ body.light .snap-stat-val{color:#1A1A2E}
 body.light .snap-stat-sub{color:#6E6E8A}
 body.light .tip-label{color:#1A1A2E}
 body.light .tip-body{color:#3D3D5C}
-body.light .ck-opt-label{color:#6E6E8A}
 </style>
 </head>
 <body>
@@ -1376,9 +1383,10 @@ function renderChecklist(d) {
     <div class="ck-section">
       <div class="ck-section-label">${esc(sec.label)}</div>
       ${(sec.items||[]).map(item=>`
-        <div class="ck-item">
-          <div class="ck-check ${item.required?'req':'opt'}">${item.required?'✓':'○'}</div>
-          <div class="ck-text">${esc(item.text)}<span class="${item.required?'ck-req-label':'ck-opt-label'}">${item.required?'Required':'Optional'}</span></div>
+        <div class="ck-item ${item.required?'req-item':'opt-item'}">
+          <div class="ck-check ${item.required?'req':'opt'}">${item.required?'✓':'◦'}</div>
+          <div class="ck-text">${esc(item.text)}</div>
+          <span class="ck-badge ${item.required?'req-b':'opt-b'}">${item.required?'Required':'Optional'}</span>
         </div>`).join('')}
     </div>`).join('');
   const c=document.createElement('div');c.className='vc';
