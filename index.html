@@ -749,6 +749,25 @@ body.light .uea-slots-area{border-top-color:#F4F4FA}
 body.light .uea-slots-title{color:#5B4FCF}
 body.light .uea-booked{background:linear-gradient(135deg,#f0fdf4,#f7fff9);border-top-color:#bbf7d0;color:#15803d}
 body.light .uea-msg-sent{background:linear-gradient(135deg,#eff6ff,#f0fdfa);border-top-color:#bae6fd;color:#0369a1}
+
+/* ─── Story Nudge Card ──────────────────────── */
+.sn-body{padding:14px 18px 18px}
+.sn-intro{font-size:13px;color:#b8b8d8;line-height:1.7;margin-bottom:16px;padding:10px 14px;background:rgba(108,92,231,.07);border-radius:10px;border-left:3px solid rgba(108,92,231,.4)}
+.sn-section{margin-bottom:14px}
+.sn-label{font-family:var(--font-mono);font-size:9px;font-weight:700;color:rgba(162,155,254,.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.sn-get-btn{padding:10px 24px;border-radius:99px;background:var(--grad-main);border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;box-shadow:0 4px 18px rgba(108,92,231,.4);margin-top:2px}
+.sn-get-btn:disabled{opacity:.25;cursor:not-allowed;box-shadow:none}
+.sn-get-btn:not(:disabled):hover{box-shadow:0 6px 24px rgba(108,92,231,.55);transform:translateY(-1px)}
+.sn-submitted{padding:14px 18px;display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#a29bfe;line-height:1.65;animation:pf-step-in .3s ease}
+body.light .sn-intro{background:rgba(85,73,224,.05);border-left-color:rgba(85,73,224,.4);color:#4D4D6A}
+body.light .sn-label{color:#8080A8}
+body.light .sn-submitted{color:#5B4FCF}
+
+/* ─── Story chip (prominent first chip) ─────── */
+.sug-btn.sug-story{background:rgba(108,92,231,.1);border-color:rgba(108,92,231,.32);color:#a29bfe;font-weight:600}
+.sug-btn.sug-story:hover{background:var(--grad-main);border-color:transparent;color:white;box-shadow:0 4px 18px rgba(108,92,231,.35)}
+body.light .sug-btn.sug-story{background:#EEF0FF;border-color:#C7C3F5;color:#5B4FCF}
+body.light .sug-btn.sug-story:hover{background:linear-gradient(135deg,#4338ca,#5549e0);color:white;border-color:transparent}
 </style>
 </head>
 <body>
@@ -766,10 +785,9 @@ body.light .uea-msg-sent{background:linear-gradient(135deg,#eff6ff,#f0fdfa);bord
     <div class="p-avatar">A</div>
     <span class="p-name">Aisha</span>
     <div class="ptags">
-      <span class="ptag" id="ptag-gpa">3.8 GPA</span>
-      <span class="ptag" id="ptag-courses">CS · Data Science</span>
-      <span class="ptag" id="ptag-countries">USA · UK · Canada</span>
-      <span class="ptag" id="ptag-budget">$50–60k / yr</span>
+      <span class="ptag n" id="ptag-gpa">GPA: —</span>
+      <span class="ptag n" id="ptag-courses">Interests: —</span>
+      <span class="ptag n" id="ptag-countries">Destinations: —</span>
     </div>
   </div>
   <div class="nav-gap"></div>
@@ -857,8 +875,8 @@ body.light .uea-msg-sent{background:linear-gradient(135deg,#eff6ff,#f0fdfa);bord
     <img src="saige-mascot.png?v=2" class="av" alt="Saige" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;margin-top:2px"/>
     <div class="msg-wrap">
       <div class="bubble">
-        <p>Hi Aisha! 👋 I'm Saige, your college counseling assistant.</p>
-        <p>Ask me anything — fit assessments, school comparisons, deadlines, requirements, essay strategy, and more.</p>
+        <p>Hi Aisha! 👋 I'm Saige, your college counseling assistant on Cialfo.</p>
+        <p>I'll help you discover the right universities, understand your chances, and plan your application — all personalised to you. Which university are you curious about?</p>
       </div>
     </div>
   </div>
@@ -866,14 +884,9 @@ body.light .uea-msg-sent{background:linear-gradient(135deg,#eff6ff,#f0fdfa);bord
 
 <div class="input-outer">
   <div class="suggestions" id="sugs">
-    <button class="sug-btn" onclick="q('Am I a fit for Cornell University?')">🎯 Fit for Cornell?</button>
-    <button class="sug-btn" onclick="q('Compare MIT vs Carnegie Mellon for Computer Science')">⚖️ MIT vs CMU for CS</button>
-    <button class="sug-btn" onclick="q('Suggest universities based on my profile')">🎓 Suggest schools for me</button>
-    <button class="sug-btn" onclick="q('Walk me through the US application timeline')">📅 US app timeline</button>
-    <button class="sug-btn" onclick="q('What do I need for a UK application checklist')">✅ UK application checklist</button>
-    <button class="sug-btn" onclick="q('Tell me about Imperial College London')">🏫 Imperial College</button>
-    <button class="sug-btn" onclick="q('How do I write a strong personal statement?')">✍️ Personal statement tips</button>
-    <button class="sug-btn" onclick="q('Build my profile')">👤 Build my profile</button>
+    <button class="sug-btn sug-story" onclick="q('Tell me about MIT')">🏛️ Tell me about MIT</button>
+    <button class="sug-btn" onclick="q('Tell me about Imperial College London')">🏫 Imperial College London</button>
+    <button class="sug-btn" onclick="q('Tell me about University of Toronto')">🍁 University of Toronto</button>
     <button class="sug-btn" onclick="q('Connect me with my guide')">🤝 My Guide</button>
   </div>
   <div class="attach-bar" id="attach-bar"></div>
@@ -907,12 +920,90 @@ body.light .uea-msg-sent{background:linear-gradient(135deg,#eff6ff,#f0fdfa);bord
 <script>
 // ── Student profile ──────────────────────────────────────────
 const S = {
-  name:'Aisha', gpa:'3.8/4.0', gpaN:3.8,
-  countries:['USA','UK','Canada'],
-  courses:['Computer Science','Data Science'],
-  budget:'$50,000–$60,000/yr', budgetN:55000,
-  year:2025, citizenship:'Indian'
+  name:'Aisha', gpa:'—', gpaN:0,
+  countries:[], courses:[],
+  budget:'—', budgetN:0,
+  year:2026, citizenship:'International'
 };
+
+// ── Story mode ───────────────────────────────────────────────
+let storyStep = 0;
+// storyStep: 0=initial 1=snapshot shown 2=prefs collected 3=recs shown
+//            4=comparison 5=fit 6=timeline 7=checklist 8=done
+
+const STORY_FOLLOW_UPS = {
+  3: ['⚖️ Compare MIT vs Carnegie Mellon for Computer Science'],
+  4: ['🎯 Am I a fit for MIT?'],
+  5: ['📅 Walk me through the US application timeline'],
+  6: ['✅ What do I need to apply to US universities?'],
+  8: [],
+};
+
+function advanceStory(vt) {
+  const steps = {
+    school_snapshot:[0,1], recommendations:[2,3],
+    comparison:[3,4], fit_assessment:[4,5],
+    timeline:[5,6], checklist:[6,7],
+  };
+  const p = steps[vt];
+  if (p && storyStep === p[0]) storyStep = p[1];
+}
+
+function renderStoryNudge() {
+  const OPTS = {
+    countries:['USA','UK','Canada','Australia','Germany','Netherlands','Singapore'],
+    courses:['Computer Science','Data Science','Engineering','Business','Economics','Mathematics'],
+    gpa:['Below 3.5','3.5–3.7','3.8–4.0','4.0+'],
+  };
+  const sel = {countries:[], courses:[], gpa:null};
+  const c = document.createElement('div');
+  c.className = 'vc';
+
+  function render() {
+    c.innerHTML = `
+      <div class="vc-accent"></div>
+      <div class="sn-body">
+        <div class="sn-intro">Great pick — MIT consistently ranks #1 globally for CS. To find universities that truly match your profile, tell me a bit about your goals.</div>
+        <div class="sn-section"><div class="sn-label">🌍 Countries you're targeting</div><div class="pf-chips" id="sn-countries"></div></div>
+        <div class="sn-section"><div class="sn-label">📚 Subjects you're interested in</div><div class="pf-chips" id="sn-courses"></div></div>
+        <div class="sn-section"><div class="sn-label">📋 Your current GPA / 12th grade</div><div class="pf-chips" id="sn-gpa"></div></div>
+        <button class="sn-get-btn" id="sn-btn" disabled>Get my recommendations →</button>
+      </div>`;
+
+    [{key:'countries',multi:true},{key:'courses',multi:true},{key:'gpa',multi:false}].forEach(({key,multi})=>{
+      const el = c.querySelector(`#sn-${key}`);
+      OPTS[key].forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'pf-chip' + ((multi ? sel[key].includes(opt) : sel[key]===opt) ? ' sel' : '');
+        btn.textContent = opt;
+        btn.onclick = () => {
+          if (multi) { const a=sel[key],i=a.indexOf(opt); i>=0?a.splice(i,1):a.push(opt); }
+          else sel[key] = opt;
+          render();
+        };
+        el.appendChild(btn);
+      });
+    });
+
+    const submitBtn = c.querySelector('#sn-btn');
+    submitBtn.disabled = sel.countries.length === 0;
+    submitBtn.onclick = () => {
+      if (sel.countries.length) { S.countries=sel.countries; const el=document.getElementById('ptag-countries'); if(el){el.textContent=sel.countries.join(' · ');el.className='ptag';} }
+      if (sel.courses.length)  { S.courses=sel.courses;    const el=document.getElementById('ptag-courses');   if(el){el.textContent=sel.courses.join(' · ');   el.className='ptag';} }
+      if (sel.gpa) {
+        const gM={'Below 3.5':'3.3/4.0','3.5–3.7':'3.6/4.0','3.8–4.0':'3.8/4.0','4.0+':'4.0/4.0'};
+        const gN={'Below 3.5':3.3,'3.5–3.7':3.6,'3.8–4.0':3.85,'4.0+':4.0};
+        S.gpa=gM[sel.gpa]||S.gpa; S.gpaN=gN[sel.gpa]||S.gpaN;
+        const el=document.getElementById('ptag-gpa'); if(el){el.textContent=S.gpa;el.className='ptag';}
+      }
+      c.innerHTML = `<div class="vc-accent"></div><div class="sn-submitted"><span style="font-size:18px;flex-shrink:0">✓</span><span>Got it — targeting <strong>${esc(sel.countries.join(', '))}</strong>${sel.courses.length?` for <strong>${esc(sel.courses.join(', '))}</strong>`:''}, GPA <strong>${esc(sel.gpa||'not set')}</strong>. Finding your best matches now…</span></div>`;
+      storyStep = 2;
+      setTimeout(() => q('Suggest universities for me'), 700);
+    };
+  }
+  render();
+  return c;
+}
 
 // ── School database ──────────────────────────────────────────
 const SCHOOLS = {
@@ -995,7 +1086,7 @@ function fitLevel(sc){return sc>=4?'strong':sc===3?'moderate':'reach'}
 function makeFactors(school) {
   const gpaStatus=S.gpaN>=3.85?'match':S.gpaN>=3.65?'close':'tight';
   const locMatch=S.countries.some(c=>school.loc.includes(c)||(c==='UK'&&school.loc.includes('UK'))||(c==='Canada'&&school.loc.includes('Canada')));
-  const budgetStatus=school.costN<=S.budgetN?'match':school.costN<=S.budgetN*1.15?'close':'tight';
+  const budgetStatus=S.budgetN===0?'close':school.costN<=S.budgetN?'match':school.costN<=S.budgetN*1.15?'close':'tight';
   const courseMatch=school.known.toLowerCase().includes('cs')||school.known.toLowerCase().includes('data')||school.known.toLowerCase().includes('engineering');
   return [
     {label:'GPA',      icon:'📋',yours:S.gpa,           theirs:school.gpaR,                         status:gpaStatus},
@@ -1822,7 +1913,8 @@ function q(t){document.getElementById('inp').value=t;ar(document.getElementById(
 const MASCOT=`<img src="saige-mascot.png?v=2" class="av" alt="Saige" style="width:32px;height:32px;border-radius:50%;object-fit:cover;flex-shrink:0;margin-top:2px"/>`;
 
 function clearChat(){
-  document.getElementById('messages').innerHTML=`<div class="msg-row s">${MASCOT}<div class="msg-wrap"><div class="bubble"><p>Starting fresh! What would you like to explore? 🎓</p></div></div></div>`;
+  storyStep=0;
+  document.getElementById('messages').innerHTML=`<div class="msg-row s">${MASCOT}<div class="msg-wrap"><div class="bubble"><p>Starting fresh! Which university are you curious about? 🎓</p></div></div></div>`;
   document.getElementById('sugs').style.display='';scrollBot();
 }
 
@@ -2203,27 +2295,44 @@ function send(){
     wrap.innerHTML='';
     const resp=getResponse(t);
     let card;
-    if(resp.type==='visual'){
-      card=renderCard(resp.data);
-    }
+    if(resp.type==='visual') card=renderCard(resp.data);
     if(card)wrap.appendChild(card);
     else{const b=document.createElement('div');b.className='bubble';b.innerHTML=`<p>${esc(String(resp.content||''))}</p>`;wrap.appendChild(b);}
-    if(resp.data)addTtsButton(wrap,resp.data);
+
+    const vt=resp.data?.visualType;
+    advanceStory(vt);
+
+    // TTS (skip for interactive card types)
+    if(resp.data&&!['profile','guide'].includes(vt)) addTtsButton(wrap,resp.data);
     document.getElementById('sb').disabled=false;
     setTimeout(()=>{ wrap.parentElement?.scrollIntoView({block:'start',behavior:'smooth'}); },60);
-    // Follow-up cards as a second Saige message
-    const followUps = resp.data && resp.data.followUps;
-    if(followUps && followUps.length) {
+
+    // Story step 1: inject preference nudge after first snapshot, skip regular chips
+    if(vt==='school_snapshot'&&storyStep===1){
+      setTimeout(()=>{
+        const m=document.getElementById('messages');
+        const row=document.createElement('div');row.className='msg-row s';
+        const av=document.createElement('div');av.innerHTML=MASCOT;
+        const nw=document.createElement('div');nw.className='msg-wrap';
+        nw.appendChild(renderStoryNudge());
+        row.appendChild(av.firstChild);row.appendChild(nw);
+        m.appendChild(row);scrollBot();
+      },700);
+      return;
+    }
+
+    // Determine follow-up chips: story-specific if in story, else generic
+    const storyChips=STORY_FOLLOW_UPS[storyStep];
+    const followUps=storyChips!==undefined?storyChips:(resp.data?.followUps||[]);
+    if(followUps&&followUps.length){
       setTimeout(()=>{
         const m=document.getElementById('messages');
         const row=document.createElement('div');row.className='msg-row s';
         const av=document.createElement('div');av.innerHTML=MASCOT;
         const fuWrap=renderFollowUps(followUps);
-        row.appendChild(av.firstChild);
-        row.appendChild(fuWrap);
-        m.appendChild(row);
-        scrollBot();
-      }, 500);
+        row.appendChild(av.firstChild);row.appendChild(fuWrap);
+        m.appendChild(row);scrollBot();
+      },500);
     }
   },900+Math.random()*500);
 }
