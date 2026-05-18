@@ -713,7 +713,11 @@ body.light .pf-done{background:linear-gradient(135deg,#f0fdf4,#f7fff9);border-to
 .uea-response-time{padding:9px 18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(180,180,220,.55)}
 .uea-rt-icon{font-size:14px;flex-shrink:0}
 .uea-actions{padding:14px 18px;display:flex;gap:10px;flex-wrap:wrap}
-.uea-btn-schedule{flex:1;min-width:140px;padding:11px 18px;border-radius:12px;background:var(--grad-main);border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 4px 20px rgba(108,92,231,.35)}
+.uea-btn-call{flex:1;min-width:120px;padding:11px 18px;border-radius:12px;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.12);color:#e8e8f4;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px}
+.uea-btn-call:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22)}
+body.light .uea-btn-call{background:white;border-color:#D0D0E8;color:#1a1a2e}
+body.light .uea-btn-call:hover{background:#F5F5FF;border-color:#a29bfe}
+.uea-btn-schedule{flex:1;min-width:120px;padding:11px 18px;border-radius:12px;background:var(--grad-main);border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 4px 20px rgba(108,92,231,.35)}
 .uea-btn-schedule:hover{box-shadow:0 6px 28px rgba(108,92,231,.55);transform:translateY(-1px)}
 .uea-btn-schedule:disabled{opacity:.38;cursor:default;transform:none;box-shadow:none}
 .uea-btn-msg{flex:1;min-width:140px;padding:11px 18px;border-radius:12px;background:rgba(34,197,94,.1);border:1.5px solid rgba(34,197,94,.28);color:#4ade80;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px}
@@ -1610,45 +1614,20 @@ function renderUEACard() {
     <div class="uea-langs">🌐 <strong>Languages:</strong>&nbsp;${g.languages.join(', ')}</div>
     <div class="uea-response-time"><span class="uea-rt-icon">💬</span>${esc(g.responseTime)}</div>
     <div class="uea-actions">
-      <button class="uea-btn-schedule">📅 Schedule a call</button>
-      <button class="uea-btn-msg">💬 Message now</button>
+      <button class="uea-btn-call">📞 Call now</button>
+      <button class="uea-btn-schedule">📅 Schedule</button>
+      <button class="uea-btn-msg">💬 Message</button>
     </div>`;
 
   const actionsEl = c.querySelector('.uea-actions');
+  const callBtn = actionsEl.querySelector('.uea-btn-call');
   const schedBtn = actionsEl.querySelector('.uea-btn-schedule');
   const msgBtn = actionsEl.querySelector('.uea-btn-msg');
 
+  callBtn.onclick = () => { window.location.href='tel:+6531385600'; };
+
   schedBtn.onclick = () => {
-    schedBtn.disabled = true;
-    const slotsArea = document.createElement('div');
-    slotsArea.className = 'uea-slots-area';
-    slotsArea.innerHTML = `
-      <div class="uea-slots-title">Pick a time for your 30-min discovery call</div>
-      <div class="uea-slots"></div>
-      <button class="uea-book-btn" disabled>Confirm booking</button>`;
-    actionsEl.insertAdjacentElement('beforebegin', slotsArea);
-
-    let selectedSlot = null;
-    const slotsEl = slotsArea.querySelector('.uea-slots');
-    g.slots.forEach(slot => {
-      const btn = document.createElement('button');
-      btn.className = 'uea-slot'; btn.textContent = slot;
-      btn.onclick = () => {
-        slotsEl.querySelectorAll('.uea-slot').forEach(b=>b.classList.remove('sel'));
-        btn.classList.add('sel'); selectedSlot = slot;
-        slotsArea.querySelector('.uea-book-btn').disabled = false;
-      };
-      slotsEl.appendChild(btn);
-    });
-
-    slotsArea.querySelector('.uea-book-btn').onclick = () => {
-      if (!selectedSlot) return;
-      slotsArea.remove(); actionsEl.remove();
-      const booked = document.createElement('div');
-      booked.className = 'uea-booked';
-      booked.innerHTML = `<span style="font-size:20px;flex-shrink:0">🎉</span><span>Discovery call booked for <strong>${esc(selectedSlot)}</strong> — you'll get a calendar invite and WhatsApp confirmation shortly.</span>`;
-      c.appendChild(booked);
-    };
+    window.open('https://calendly.com/priya-nair-cialfo/discovery-call','_blank','noopener');
   };
 
   msgBtn.onclick = () => {
@@ -2402,29 +2381,13 @@ function toggleVcallPause(){
 function vcallSkip(){stopSpeech();setVcallSpeaking(false);setTimeout(()=>presentVcallQ(vcallIdx+1),300);}
 
 function vcallUeaCall(){
-  const nudge=document.getElementById('vcall-uea-nudge');
-  if(nudge){nudge.style.borderColor='rgba(108,92,231,.6)';nudge.style.background='rgba(108,92,231,.08)';}
-  const m=document.getElementById('messages');
-  const row=document.createElement('div');row.className='msg-row s';
-  const av=document.createElement('div');av.innerHTML=MASCOT;
-  const nw=document.createElement('div');nw.className='msg-wrap';
-  const b=document.createElement('div');b.className='bubble';
-  b.innerHTML=`<p>📞 Connecting you to <strong>Priya Nair</strong> now… She'll be with you shortly. Make sure your audio is on!</p>`;
-  nw.appendChild(b);row.appendChild(av.firstChild);row.appendChild(nw);
-  if(m){m.appendChild(row);scrollBot();}
   closeVideoCall();
+  window.location.href='tel:+6531385600';
 }
 
 function vcallUeaSched(){
-  const m=document.getElementById('messages');
-  const row=document.createElement('div');row.className='msg-row s';
-  const av=document.createElement('div');av.innerHTML=MASCOT;
-  const nw=document.createElement('div');nw.className='msg-wrap';
-  const b=document.createElement('div');b.className='bubble';
-  b.innerHTML=`<p>📅 Opening <strong>Priya Nair's</strong> calendar… Pick a slot that works for you and she'll be in touch to confirm.</p>`;
-  nw.appendChild(b);row.appendChild(av.firstChild);row.appendChild(nw);
-  if(m){m.appendChild(row);scrollBot();}
   closeVideoCall();
+  window.open('https://calendly.com/priya-nair-cialfo/discovery-call','_blank','noopener');
 }
 function jumpVcallTo(idx){stopSpeech();setVcallSpeaking(false);setTimeout(()=>presentVcallQ(idx),300);}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('vcall-overlay').classList.contains('open'))closeVideoCall();});
