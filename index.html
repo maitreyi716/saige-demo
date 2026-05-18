@@ -785,9 +785,9 @@ body.light .sug-btn.sug-story:hover{background:linear-gradient(135deg,#4338ca,#5
     <div class="p-avatar">A</div>
     <span class="p-name">Aisha</span>
     <div class="ptags">
-      <span class="ptag n" id="ptag-gpa">GPA: —</span>
-      <span class="ptag n" id="ptag-courses">Interests: —</span>
-      <span class="ptag n" id="ptag-countries">Destinations: —</span>
+      <span class="ptag" id="ptag-gpa" style="display:none"></span>
+      <span class="ptag" id="ptag-courses" style="display:none"></span>
+      <span class="ptag" id="ptag-countries" style="display:none"></span>
     </div>
   </div>
   <div class="nav-gap"></div>
@@ -988,13 +988,13 @@ function renderStoryNudge() {
     const submitBtn = c.querySelector('#sn-btn');
     submitBtn.disabled = sel.countries.length === 0;
     submitBtn.onclick = () => {
-      if (sel.countries.length) { S.countries=sel.countries; const el=document.getElementById('ptag-countries'); if(el){el.textContent=sel.countries.join(' · ');el.className='ptag';} }
-      if (sel.courses.length)  { S.courses=sel.courses;    const el=document.getElementById('ptag-courses');   if(el){el.textContent=sel.courses.join(' · ');   el.className='ptag';} }
+      if (sel.countries.length) { S.countries=sel.countries; const el=document.getElementById('ptag-countries'); if(el){el.textContent=sel.countries.join(' · ');el.className='ptag';el.style.display='';} }
+      if (sel.courses.length)  { S.courses=sel.courses;    const el=document.getElementById('ptag-courses');   if(el){el.textContent=sel.courses.join(' · ');   el.className='ptag';el.style.display='';} }
       if (sel.gpa) {
         const gM={'Below 3.5':'3.3/4.0','3.5–3.7':'3.6/4.0','3.8–4.0':'3.8/4.0','4.0+':'4.0/4.0'};
         const gN={'Below 3.5':3.3,'3.5–3.7':3.6,'3.8–4.0':3.85,'4.0+':4.0};
         S.gpa=gM[sel.gpa]||S.gpa; S.gpaN=gN[sel.gpa]||S.gpaN;
-        const el=document.getElementById('ptag-gpa'); if(el){el.textContent=S.gpa;el.className='ptag';}
+        const el=document.getElementById('ptag-gpa'); if(el){el.textContent=S.gpa;el.className='ptag';el.style.display='';}
       }
       c.innerHTML = `<div class="vc-accent"></div><div class="sn-submitted"><span style="font-size:18px;flex-shrink:0">✓</span><span>Got it — targeting <strong>${esc(sel.countries.join(', '))}</strong>${sel.courses.length?` for <strong>${esc(sel.courses.join(', '))}</strong>`:''}, GPA <strong>${esc(sel.gpa||'not set')}</strong>. Finding your best matches now…</span></div>`;
       storyStep = 2;
@@ -1443,9 +1443,9 @@ function updateProfile(sel) {
   const coursesEl=document.getElementById('ptag-courses');
   const countriesEl=document.getElementById('ptag-countries');
   const budgetEl=document.getElementById('ptag-budget');
-  if(gpaEl) gpaEl.textContent = S.gpa;
-  if(coursesEl) coursesEl.textContent = S.courses.join(' · ');
-  if(countriesEl) countriesEl.textContent = S.countries.join(' · ');
+  if(gpaEl && S.gpa !== '—') { gpaEl.textContent = S.gpa; gpaEl.style.display = ''; }
+  if(coursesEl && S.courses.length) { coursesEl.textContent = S.courses.join(' · '); coursesEl.style.display = ''; }
+  if(countriesEl && S.countries.length) { countriesEl.textContent = S.countries.join(' · '); countriesEl.style.display = ''; }
   if(budgetEl) {
     const b = S.budget.replace('/yr','').replace('$','$').trim();
     budgetEl.textContent = b + ' / yr';
@@ -1914,7 +1914,9 @@ const MASCOT=`<img src="saige-mascot.png?v=2" class="av" alt="Saige" style="widt
 
 function clearChat(){
   storyStep=0;
-  document.getElementById('messages').innerHTML=`<div class="msg-row s">${MASCOT}<div class="msg-wrap"><div class="bubble"><p>Starting fresh! Which university are you curious about? 🎓</p></div></div></div>`;
+  S.gpa='—';S.gpaN=0;S.countries=[];S.courses=[];S.budget='—';S.budgetN=0;
+  ['ptag-gpa','ptag-courses','ptag-countries'].forEach(id=>{const el=document.getElementById(id);if(el)el.style.display='none';});
+  document.getElementById('messages').innerHTML=`<div class="msg-row s">${MASCOT}<div class="msg-wrap"><div class="bubble"><p>Hi Aisha! 👋 I'm Saige, your college counseling assistant on Cialfo.</p><p>I'll help you discover the right universities, understand your chances, and plan your application — all personalised to you. Which university are you curious about? 🎓</p></div></div></div>`;
   document.getElementById('sugs').style.display='';scrollBot();
 }
 
