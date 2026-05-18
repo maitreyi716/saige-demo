@@ -750,18 +750,74 @@ body.light .uea-slots-title{color:#5B4FCF}
 body.light .uea-booked{background:linear-gradient(135deg,#f0fdf4,#f7fff9);border-top-color:#bbf7d0;color:#15803d}
 body.light .uea-msg-sent{background:linear-gradient(135deg,#eff6ff,#f0fdfa);border-top-color:#bae6fd;color:#0369a1}
 
-/* ─── Story Nudge Card ──────────────────────── */
-.sn-body{padding:14px 18px 18px}
-.sn-intro{font-size:13px;color:#b8b8d8;line-height:1.7;margin-bottom:16px;padding:10px 14px;background:rgba(108,92,231,.07);border-radius:10px;border-left:3px solid rgba(108,92,231,.4)}
-.sn-section{margin-bottom:14px}
-.sn-label{font-family:var(--font-mono);font-size:9px;font-weight:700;color:rgba(162,155,254,.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
-.sn-get-btn{padding:10px 24px;border-radius:99px;background:var(--grad-main);border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;box-shadow:0 4px 18px rgba(108,92,231,.4);margin-top:2px}
-.sn-get-btn:disabled{opacity:.25;cursor:not-allowed;box-shadow:none}
-.sn-get-btn:not(:disabled):hover{box-shadow:0 6px 24px rgba(108,92,231,.55);transform:translateY(-1px)}
+/* ─── Story Nudge v2 ─────────────────────────────────── */
+.sn2{padding:0 0 4px}
+.sn2-header{padding:16px 18px 12px;border-bottom:1px solid rgba(255,255,255,.07)}
+.sn2-title{font-family:var(--font-head);font-size:15px;font-weight:700;color:#e8e8f4;margin-bottom:3px}
+.sn2-sub{font-size:12.5px;color:rgba(180,180,220,.6);line-height:1.5}
+.sn2-body{padding:16px 18px 0}
+.sn2-section{margin-bottom:18px}
+.sn2-label{display:flex;align-items:center;gap:7px;margin-bottom:10px}
+.sn2-label-txt{font-family:var(--font-mono);font-size:9.5px;font-weight:700;color:rgba(162,155,254,.6);text-transform:uppercase;letter-spacing:1.8px}
+.sn2-label-count{font-size:10px;background:rgba(108,92,231,.22);color:#a29bfe;border-radius:99px;padding:1px 7px;font-weight:600;transition:all .2s}
+.sn2-chips{display:flex;flex-wrap:wrap;gap:7px}
+.sn2-chip{padding:7px 14px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:1.5px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:#c0c0e0;transition:all .15s;font-family:var(--font-body);line-height:1}
+.sn2-chip:hover{border-color:rgba(108,92,231,.5);color:#c4b5fd;background:rgba(108,92,231,.1)}
+.sn2-chip.sel{background:rgba(108,92,231,.2);border-color:#8b7cf8;color:#ddd6fe;font-weight:600}
+.sn2-chip.sel::before{content:'✓ ';font-size:11px;opacity:.8}
+.sn2-more-btn{background:none;border:none;color:rgba(162,155,254,.55);font-size:12px;cursor:pointer;padding:4px 2px;font-family:var(--font-body);text-decoration:underline;text-underline-offset:3px;transition:color .15s}
+.sn2-more-btn:hover{color:#a29bfe}
+.sn2-extra{display:none;flex-wrap:wrap;gap:7px;margin-top:7px}
+.sn2-extra.open{display:flex}
+.sn2-custom-row{display:flex;gap:8px;margin-top:8px}
+.sn2-custom-inp{flex:1;background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);border-radius:8px;padding:7px 12px;font-size:12.5px;color:#e8e8f0;outline:none;font-family:var(--font-body);transition:all .18s}
+.sn2-custom-inp:focus{border-color:rgba(108,92,231,.5);background:rgba(255,255,255,.07)}
+.sn2-custom-inp::placeholder{color:rgba(180,180,220,.28)}
+.sn2-custom-add{padding:7px 12px;border-radius:8px;background:rgba(108,92,231,.15);border:1.5px solid rgba(108,92,231,.3);color:#a29bfe;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all .15s;white-space:nowrap}
+.sn2-custom-add:hover{background:rgba(108,92,231,.25)}
+.sn2-footer{padding:12px 18px 18px;border-top:1px solid rgba(255,255,255,.07);margin-top:4px}
+.sn2-get-btn{width:100%;padding:11px;border-radius:10px;background:var(--grad-main);border:none;color:white;font-size:13.5px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;box-shadow:0 4px 18px rgba(108,92,231,.35)}
+.sn2-get-btn:disabled{opacity:.25;cursor:not-allowed;box-shadow:none}
+.sn2-get-btn:not(:disabled):hover{box-shadow:0 6px 24px rgba(108,92,231,.55);transform:translateY(-1px)}
 .sn-submitted{padding:14px 18px;display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#a29bfe;line-height:1.65;animation:pf-step-in .3s ease}
-body.light .sn-intro{background:rgba(85,73,224,.05);border-left-color:rgba(85,73,224,.4);color:#4D4D6A}
-body.light .sn-label{color:#8080A8}
+body.light .sn2-header{border-bottom-color:rgba(0,0,0,.07)}
+body.light .sn2-title{color:#1a1a2e}
+body.light .sn2-sub{color:#6B6B8A}
+body.light .sn2-label-txt{color:#8080A8}
+body.light .sn2-chip{background:white;border-color:#C5C5D9;color:#3D3D5C}
+body.light .sn2-chip:hover{background:#EEF0FF;border-color:#a29bfe;color:#5B4FCF}
+body.light .sn2-chip.sel{background:#EEF0FF;border-color:#7c6fff;color:#4338ca}
+body.light .sn2-more-btn{color:#8080A8}
+body.light .sn2-more-btn:hover{color:#5B4FCF}
+body.light .sn2-custom-inp{background:white;border-color:#C5C5D9;color:#1a1a2e}
+body.light .sn2-footer{border-top-color:rgba(0,0,0,.07)}
 body.light .sn-submitted{color:#5B4FCF}
+/* ─── Video intake UEA nudge ─────────────────────────── */
+.vcall-uea-divider{display:flex;align-items:center;gap:12px;width:100%;color:rgba(200,200,240,.3);font-size:11.5px;letter-spacing:.04em}
+.vcall-uea-divider::before,.vcall-uea-divider::after{content:'';flex:1;height:1px;background:rgba(255,255,255,.08)}
+.vcall-uea-nudge{display:flex;align-items:center;gap:12px;width:100%;background:rgba(255,255,255,.04);border:1.5px solid rgba(255,255,255,.09);border-radius:14px;padding:14px 16px;transition:border-color .2s}
+.vcall-uea-nudge:hover{border-color:rgba(108,92,231,.3)}
+.vcall-uea-av{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#6c5ce7,#a29bfe);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px;color:white;flex-shrink:0;position:relative}
+.vcall-uea-dot{position:absolute;bottom:1px;right:1px;width:10px;height:10px;border-radius:50%;background:#22c55e;border:2px solid #0a0b12}
+.vcall-uea-info{flex:1;min-width:0}
+.vcall-uea-name{font-size:13px;font-weight:700;color:#e8e8f4;margin-bottom:2px}
+.vcall-uea-role{font-size:11.5px;color:rgba(200,200,240,.5);margin-bottom:2px}
+.vcall-uea-note{font-size:11px;color:rgba(162,155,254,.6)}
+.vcall-uea-btns{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.vcall-uea-call,.vcall-uea-sched{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;font-family:var(--font-body);transition:all .15s;white-space:nowrap}
+.vcall-uea-call{background:rgba(108,92,231,.18);border:1.5px solid rgba(108,92,231,.35);color:#a29bfe}
+.vcall-uea-call:hover{background:rgba(108,92,231,.28)}
+.vcall-uea-sched{background:rgba(255,255,255,.05);border:1.5px solid rgba(255,255,255,.1);color:rgba(200,200,240,.6)}
+.vcall-uea-sched:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18)}
+body.light .vcall-uea-divider{color:#9090B0}
+body.light .vcall-uea-divider::before,body.light .vcall-uea-divider::after{background:rgba(0,0,0,.1)}
+body.light .vcall-uea-nudge{background:white;border-color:#E0E0F0}
+body.light .vcall-uea-dot{border-color:white}
+body.light .vcall-uea-name{color:#1a1a2e}
+body.light .vcall-uea-role{color:#6B6B8A}
+body.light .vcall-uea-note{color:#8080A8}
+body.light .vcall-uea-call{background:#EEF0FF;border-color:#C7C3F5;color:#5B4FCF}
+body.light .vcall-uea-sched{background:white;border-color:#E0E0F0;color:#6B6B8A}
 
 /* ─── Story chip (prominent first chip) ─────── */
 .sug-btn.sug-story{background:rgba(108,92,231,.1);border-color:rgba(108,92,231,.32);color:#a29bfe;font-weight:600}
@@ -830,6 +886,21 @@ body.light .sug-btn.sug-story:hover{background:linear-gradient(135deg,#4338ca,#5
       <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><polygon points="5 3 19 12 5 21 5 3"/></svg>
       Start session
     </button>
+    <div class="vcall-uea-divider">
+      <span>or connect with your advisor</span>
+    </div>
+    <div class="vcall-uea-nudge" id="vcall-uea-nudge">
+      <div class="vcall-uea-av">PN<div class="vcall-uea-dot"></div></div>
+      <div class="vcall-uea-info">
+        <div class="vcall-uea-name">Priya Nair</div>
+        <div class="vcall-uea-role">Your University Enrollment Advisor · ⭐ 4.9</div>
+        <div class="vcall-uea-note">Available now · Specialises in CS, US & UK admissions</div>
+      </div>
+      <div class="vcall-uea-btns">
+        <button class="vcall-uea-call" onclick="vcallUeaCall()">📞 Call</button>
+        <button class="vcall-uea-sched" onclick="vcallUeaSched()">📅 Schedule</button>
+      </div>
+    </div>
   </div>
   <!-- Phase 2: presentation -->
   <div class="vcall-present" id="vcall-present">
@@ -936,6 +1007,7 @@ const STORY_FOLLOW_UPS = {
   4: ['🎯 Am I a fit for MIT?'],
   5: ['📅 Walk me through the US application timeline'],
   6: ['✅ What do I need to apply to US universities?'],
+  7: [],
   8: [],
 };
 
@@ -952,41 +1024,89 @@ function advanceStory(vt) {
 function renderStoryNudge() {
   const OPTS = {
     countries:['USA','UK','Canada','Australia','Germany','Netherlands','Singapore'],
-    courses:['Computer Science','Data Science','Engineering','Business','Economics','Mathematics'],
+    countriesExtra:['New Zealand','Ireland','France','Sweden','Japan','South Korea','UAE'],
+    courses:['Computer Science','Data Science','Engineering','Business'],
+    coursesExtra:['Economics','Mathematics','Medicine','Law','Architecture','Psychology','Finance'],
     gpa:['Below 3.5','3.5–3.7','3.8–4.0','4.0+'],
   };
   const sel = {countries:[], courses:[], gpa:null};
   const c = document.createElement('div');
-  c.className = 'vc';
+  c.className = 'vc sn2';
 
   function render() {
+    const countSel = sel.countries.length + sel.courses.length + (sel.gpa ? 1 : 0);
     c.innerHTML = `
       <div class="vc-accent"></div>
-      <div class="sn-body">
-        <div class="sn-intro">Great pick — MIT consistently ranks #1 globally for CS. To find universities that truly match your profile, tell me a bit about your goals.</div>
-        <div class="sn-section"><div class="sn-label">🌍 Countries you're targeting</div><div class="pf-chips" id="sn-countries"></div></div>
-        <div class="sn-section"><div class="sn-label">📚 Subjects you're interested in</div><div class="pf-chips" id="sn-courses"></div></div>
-        <div class="sn-section"><div class="sn-label">📋 Your current GPA / 12th grade</div><div class="pf-chips" id="sn-gpa"></div></div>
-        <button class="sn-get-btn" id="sn-btn" disabled>Get my recommendations →</button>
+      <div class="sn2-header">
+        <div class="sn2-title">Tell me about your goals</div>
+        <div class="sn2-sub">Great pick — MIT ranks #1 globally for CS. Help me find universities that truly fit your profile.</div>
+      </div>
+      <div class="sn2-body">
+        <div class="sn2-section">
+          <div class="sn2-label"><span class="sn2-label-txt">🌍 Where are you looking?</span>${sel.countries.length?`<span class="sn2-label-count">${sel.countries.length} selected</span>`:''}</div>
+          <div class="sn2-chips" id="sn2-countries"></div>
+          <div class="sn2-extra" id="sn2-countries-extra"></div>
+          <button class="sn2-more-btn" id="sn2-countries-more">+ More countries</button>
+        </div>
+        <div class="sn2-section">
+          <div class="sn2-label"><span class="sn2-label-txt">📚 What do you want to study?</span>${sel.courses.length?`<span class="sn2-label-count">${sel.courses.length} selected</span>`:''}</div>
+          <div class="sn2-chips" id="sn2-courses"></div>
+          <div class="sn2-extra" id="sn2-courses-extra"></div>
+          <button class="sn2-more-btn" id="sn2-courses-more">+ More subjects</button>
+          <div class="sn2-custom-row">
+            <input class="sn2-custom-inp" id="sn2-course-inp" type="text" placeholder="Type another subject…" />
+            <button class="sn2-custom-add" id="sn2-course-add">Add</button>
+          </div>
+        </div>
+        <div class="sn2-section" style="margin-bottom:4px">
+          <div class="sn2-label"><span class="sn2-label-txt">📋 Current GPA / predicted grade</span></div>
+          <div class="sn2-chips" id="sn2-gpa"></div>
+        </div>
+      </div>
+      <div class="sn2-footer">
+        <button class="sn2-get-btn" id="sn2-btn" ${sel.countries.length===0?'disabled':''}>Get my recommendations →</button>
       </div>`;
 
-    [{key:'countries',multi:true},{key:'courses',multi:true},{key:'gpa',multi:false}].forEach(({key,multi})=>{
-      const el = c.querySelector(`#sn-${key}`);
-      OPTS[key].forEach(opt => {
-        const btn = document.createElement('button');
-        btn.className = 'pf-chip' + ((multi ? sel[key].includes(opt) : sel[key]===opt) ? ' sel' : '');
-        btn.textContent = opt;
-        btn.onclick = () => {
-          if (multi) { const a=sel[key],i=a.indexOf(opt); i>=0?a.splice(i,1):a.push(opt); }
-          else sel[key] = opt;
-          render();
-        };
-        el.appendChild(btn);
-      });
+    const makeChip = (opt, selArr, multi) => {
+      const btn = document.createElement('button');
+      btn.className = 'sn2-chip' + ((multi ? selArr.includes(opt) : selArr===opt) ? ' sel' : '');
+      btn.textContent = opt;
+      btn.onclick = () => {
+        if (multi) { const i=selArr.indexOf(opt); i>=0?selArr.splice(i,1):selArr.push(opt); }
+        else { /* GPA is handled differently */ }
+        render();
+      };
+      return btn;
+    };
+    // Countries
+    const cEl = c.querySelector('#sn2-countries');
+    OPTS.countries.forEach(opt => { const b=makeChip(opt,sel.countries,true); cEl.appendChild(b); });
+    const cExtraEl = c.querySelector('#sn2-countries-extra');
+    OPTS.countriesExtra.forEach(opt => { const b=makeChip(opt,sel.countries,true); cExtraEl.appendChild(b); });
+    const cMoreBtn = c.querySelector('#sn2-countries-more');
+    cMoreBtn.onclick = () => { cExtraEl.classList.toggle('open'); cMoreBtn.textContent = cExtraEl.classList.contains('open') ? '− Less' : '+ More countries'; };
+    // Courses
+    const coEl = c.querySelector('#sn2-courses');
+    OPTS.courses.forEach(opt => { const b=makeChip(opt,sel.courses,true); coEl.appendChild(b); });
+    const coExtraEl = c.querySelector('#sn2-courses-extra');
+    OPTS.coursesExtra.forEach(opt => { const b=makeChip(opt,sel.courses,true); coExtraEl.appendChild(b); });
+    const coMoreBtn = c.querySelector('#sn2-courses-more');
+    coMoreBtn.onclick = () => { coExtraEl.classList.toggle('open'); coMoreBtn.textContent = coExtraEl.classList.contains('open') ? '− Less subjects' : '+ More subjects'; };
+    const courseInp = c.querySelector('#sn2-course-inp');
+    const courseAddBtn = c.querySelector('#sn2-course-add');
+    courseAddBtn.onclick = () => { const v=courseInp.value.trim(); if(v&&!sel.courses.includes(v)){sel.courses.push(v);render();}else courseInp.value=''; };
+    courseInp.onkeydown = (e) => { if(e.key==='Enter')courseAddBtn.onclick(); };
+    // GPA
+    const gpaEl = c.querySelector('#sn2-gpa');
+    OPTS.gpa.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'sn2-chip' + (sel.gpa===opt ? ' sel' : '');
+      btn.textContent = opt;
+      btn.onclick = () => { sel.gpa=opt; render(); };
+      gpaEl.appendChild(btn);
     });
 
-    const submitBtn = c.querySelector('#sn-btn');
-    submitBtn.disabled = sel.countries.length === 0;
+    const submitBtn = c.querySelector('#sn2-btn');
     submitBtn.onclick = () => {
       if (sel.countries.length) { S.countries=sel.countries; const el=document.getElementById('ptag-countries'); if(el){el.textContent=sel.countries.join(' · ');el.className='ptag';el.style.display='';} }
       if (sel.courses.length)  { S.courses=sel.courses;    const el=document.getElementById('ptag-courses');   if(el){el.textContent=sel.courses.join(' · ');   el.className='ptag';el.style.display='';} }
@@ -996,7 +1116,7 @@ function renderStoryNudge() {
         S.gpa=gM[sel.gpa]||S.gpa; S.gpaN=gN[sel.gpa]||S.gpaN;
         const el=document.getElementById('ptag-gpa'); if(el){el.textContent=S.gpa;el.className='ptag';el.style.display='';}
       }
-      c.innerHTML = `<div class="vc-accent"></div><div class="sn-submitted"><span style="font-size:18px;flex-shrink:0">✓</span><span>Got it — targeting <strong>${esc(sel.countries.join(', '))}</strong>${sel.courses.length?` for <strong>${esc(sel.courses.join(', '))}</strong>`:''}, GPA <strong>${esc(sel.gpa||'not set')}</strong>. Finding your best matches now…</span></div>`;
+      c.innerHTML = `<div class="vc-accent"></div><div class="sn2-header"><div class="sn2-title" style="color:#a29bfe">✓ Got it!</div><div class="sn2-sub">Targeting <strong>${esc(sel.countries.join(', '))}</strong>${sel.courses.length?` for <strong>${esc(sel.courses.join(', '))}</strong>`:''}, GPA <strong>${esc(sel.gpa||'not set')}</strong>. Finding your best matches now…</div></div>`;
       storyStep = 2;
       setTimeout(() => q('Suggest universities for me'), 700);
     };
@@ -2280,6 +2400,32 @@ function toggleVcallPause(){
 }
 
 function vcallSkip(){stopSpeech();setVcallSpeaking(false);setTimeout(()=>presentVcallQ(vcallIdx+1),300);}
+
+function vcallUeaCall(){
+  const nudge=document.getElementById('vcall-uea-nudge');
+  if(nudge){nudge.style.borderColor='rgba(108,92,231,.6)';nudge.style.background='rgba(108,92,231,.08)';}
+  const m=document.getElementById('messages');
+  const row=document.createElement('div');row.className='msg-row s';
+  const av=document.createElement('div');av.innerHTML=MASCOT;
+  const nw=document.createElement('div');nw.className='msg-wrap';
+  const b=document.createElement('div');b.className='bubble';
+  b.innerHTML=`<p>📞 Connecting you to <strong>Priya Nair</strong> now… She'll be with you shortly. Make sure your audio is on!</p>`;
+  nw.appendChild(b);row.appendChild(av.firstChild);row.appendChild(nw);
+  if(m){m.appendChild(row);scrollBot();}
+  closeVideoCall();
+}
+
+function vcallUeaSched(){
+  const m=document.getElementById('messages');
+  const row=document.createElement('div');row.className='msg-row s';
+  const av=document.createElement('div');av.innerHTML=MASCOT;
+  const nw=document.createElement('div');nw.className='msg-wrap';
+  const b=document.createElement('div');b.className='bubble';
+  b.innerHTML=`<p>📅 Opening <strong>Priya Nair's</strong> calendar… Pick a slot that works for you and she'll be in touch to confirm.</p>`;
+  nw.appendChild(b);row.appendChild(av.firstChild);row.appendChild(nw);
+  if(m){m.appendChild(row);scrollBot();}
+  closeVideoCall();
+}
 function jumpVcallTo(idx){stopSpeech();setVcallSpeaking(false);setTimeout(()=>presentVcallQ(idx),300);}
 document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('vcall-overlay').classList.contains('open'))closeVideoCall();});
 
@@ -2307,7 +2453,7 @@ function send(){
     // TTS (skip for interactive card types)
     if(resp.data&&!['profile','guide'].includes(vt)) addTtsButton(wrap,resp.data);
     document.getElementById('sb').disabled=false;
-    setTimeout(()=>{ wrap.parentElement?.scrollIntoView({block:'start',behavior:'smooth'}); },60);
+    setTimeout(()=>{ const row=wrap.parentElement;const msgs=document.getElementById('messages');if(row&&msgs)msgs.scrollTo({top:row.offsetTop-8,behavior:'smooth'}); },80);
 
     // Story step 1: inject preference nudge after first snapshot, skip regular chips
     if(vt==='school_snapshot'&&storyStep===1){
@@ -2318,7 +2464,42 @@ function send(){
         const nw=document.createElement('div');nw.className='msg-wrap';
         nw.appendChild(renderStoryNudge());
         row.appendChild(av.firstChild);row.appendChild(nw);
-        m.appendChild(row);scrollBot();
+        m.appendChild(row);m.scrollTo({top:row.offsetTop-8,behavior:'smooth'});
+      },700);
+      return;
+    }
+
+    // Story step 7: inject UEA advisor card after checklist
+    if(vt==='checklist'&&storyStep===7){
+      setTimeout(()=>{
+        const m=document.getElementById('messages');
+        const row=document.createElement('div');row.className='msg-row s';
+        const av=document.createElement('div');av.innerHTML=MASCOT;
+        const nw=document.createElement('div');nw.className='msg-wrap';
+        const ueaCard=document.createElement('div');ueaCard.className='vc';
+        ueaCard.innerHTML=`
+          <div class="vc-accent"></div>
+          <div class="sn2-header">
+            <div class="sn2-title">Ready to take the next step?</div>
+            <div class="sn2-sub">Your University Enrollment Advisor can walk you through this checklist and make sure nothing gets missed.</div>
+          </div>
+          <div style="padding:12px 18px 18px">
+            <div class="vcall-uea-nudge" style="width:auto">
+              <div class="vcall-uea-av">PN<div class="vcall-uea-dot"></div></div>
+              <div class="vcall-uea-info">
+                <div class="vcall-uea-name">Priya Nair</div>
+                <div class="vcall-uea-role">University Enrollment Advisor · ⭐ 4.9</div>
+                <div class="vcall-uea-note">Available now · UK &amp; US admissions specialist</div>
+              </div>
+              <div class="vcall-uea-btns">
+                <button class="vcall-uea-call" onclick="vcallUeaCall()">📞 Call</button>
+                <button class="vcall-uea-sched" onclick="vcallUeaSched()">📅 Schedule</button>
+              </div>
+            </div>
+          </div>`;
+        nw.appendChild(ueaCard);
+        row.appendChild(av.firstChild);row.appendChild(nw);
+        m.appendChild(row);m.scrollTo({top:row.offsetTop-8,behavior:'smooth'});
       },700);
       return;
     }
@@ -2333,7 +2514,7 @@ function send(){
         const av=document.createElement('div');av.innerHTML=MASCOT;
         const fuWrap=renderFollowUps(followUps);
         row.appendChild(av.firstChild);row.appendChild(fuWrap);
-        m.appendChild(row);scrollBot();
+        m.appendChild(row);m.scrollTo({top:row.offsetTop-8,behavior:'smooth'});
       },500);
     }
   },900+Math.random()*500);
