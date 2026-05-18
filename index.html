@@ -666,6 +666,89 @@ body.light .snap-stat-val{color:#1A1A2E}
 body.light .snap-stat-sub{color:#6E6E8A}
 body.light .tip-label{color:#1A1A2E}
 body.light .tip-body{color:#3D3D5C}
+
+/* ─── Profile Setup Card ─────────────────── */
+@keyframes pf-step-in{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.pf-header{padding:16px 18px 14px;border-bottom:1px solid rgba(255,255,255,.07);animation:pf-step-in .3s ease}
+.pf-progress{height:3px;background:rgba(255,255,255,.07);border-radius:3px;margin-bottom:12px;overflow:hidden}
+.pf-bar{height:100%;background:var(--grad-main);border-radius:3px;transition:width .4s cubic-bezier(.22,.68,0,1.2)}
+.pf-step-label{font-family:var(--font-mono);font-size:9px;font-weight:700;color:rgba(162,155,254,.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:6px}
+.pf-question{font-family:var(--font-head);font-size:17px;font-weight:700;color:#e8e8f0;line-height:1.25}
+.pf-body{padding:14px 18px 18px;animation:pf-step-in .3s ease}
+.pf-hint{font-size:11px;color:rgba(180,180,220,.4);margin-bottom:12px;line-height:1.5}
+.pf-chips{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px}
+.pf-chip{padding:7px 14px;border-radius:99px;font-size:12.5px;font-weight:600;cursor:pointer;border:1.5px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);color:#b0b0d0;transition:all .15s;font-family:var(--font-body);line-height:1}
+.pf-chip:hover{border-color:rgba(108,92,231,.45);color:#a29bfe;background:rgba(108,92,231,.1)}
+.pf-chip.sel{background:rgba(108,92,231,.18);border-color:rgba(108,92,231,.6);color:#c4b5fd;box-shadow:0 0 0 1px rgba(108,92,231,.18)}
+.pf-next{padding:9px 24px;border-radius:99px;background:var(--grad-main);border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;box-shadow:0 4px 18px rgba(108,92,231,.4)}
+.pf-next:disabled{opacity:.3;cursor:not-allowed;box-shadow:none}
+.pf-next:not(:disabled):hover{box-shadow:0 6px 24px rgba(108,92,231,.55);transform:translateY(-1px)}
+.pf-done{padding:14px 18px;background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(16,185,129,.06));border-top:1px solid rgba(34,197,94,.18);display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#4ade80;font-weight:500;line-height:1.6}
+.pf-done-icon{font-size:20px;flex-shrink:0;margin-top:-2px}
+body.light .pf-header{border-bottom-color:#F4F4FA}
+body.light .pf-progress{background:#E5E7EB}
+body.light .pf-step-label{color:#8080A8}
+body.light .pf-question{color:#1A1A2E}
+body.light .pf-hint{color:#9898B8}
+body.light .pf-chip{background:white;border-color:#C5C5D9;color:#3D3D5C}
+body.light .pf-chip:hover{background:#EEF0FF;border-color:#a29bfe;color:#5B4FCF}
+body.light .pf-chip.sel{background:#EEF0FF;border-color:#7c6fff;color:#4338ca;box-shadow:0 0 0 1px rgba(108,92,231,.1)}
+body.light .pf-done{background:linear-gradient(135deg,#f0fdf4,#f7fff9);border-top-color:#bbf7d0;color:#15803d}
+
+/* ─── UEA / Guide Card ─────────────────── */
+.uea-hero{padding:18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;gap:14px;align-items:flex-start}
+.uea-avatar{width:64px;height:64px;border-radius:50%;background:var(--grad-main);display:flex;align-items:center;justify-content:center;font-size:22px;font-weight:900;color:white;flex-shrink:0;box-shadow:0 0 0 3px rgba(108,92,231,.25),0 8px 24px rgba(108,92,231,.28);position:relative}
+.uea-online{position:absolute;bottom:2px;right:2px;width:14px;height:14px;border-radius:50%;background:#22c55e;border:2.5px solid #0e1016}
+.uea-info{flex:1;min-width:0}
+.uea-name{font-family:var(--font-head);font-size:18px;font-weight:700;color:#e8e8f0;line-height:1.15;margin-bottom:3px}
+.uea-role{font-family:var(--font-mono);font-size:9px;color:rgba(162,155,254,.55);text-transform:uppercase;letter-spacing:2px;margin-bottom:9px}
+.uea-meta{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
+.uea-star{font-size:12px;color:#fbbf24;font-weight:700;display:flex;align-items:center;gap:3px}
+.uea-stat{font-size:11.5px;color:rgba(180,180,220,.55);display:flex;align-items:center;gap:4px}
+.uea-stat-sep{color:rgba(255,255,255,.15);font-size:13px;line-height:1}
+.uea-bio{padding:12px 18px;font-size:13px;color:#b0b0d0;line-height:1.7;border-bottom:1px solid rgba(255,255,255,.07)}
+.uea-specs{padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.07)}
+.uea-spec-label{font-family:var(--font-mono);font-size:9px;font-weight:700;color:rgba(162,155,254,.5);text-transform:uppercase;letter-spacing:2px;margin-bottom:8px}
+.uea-langs{padding:10px 18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:7px;font-size:12px;color:rgba(180,180,220,.55)}
+.uea-response-time{padding:9px 18px;border-bottom:1px solid rgba(255,255,255,.07);display:flex;align-items:center;gap:8px;font-size:12px;color:rgba(180,180,220,.55)}
+.uea-rt-icon{font-size:14px;flex-shrink:0}
+.uea-actions{padding:14px 18px;display:flex;gap:10px;flex-wrap:wrap}
+.uea-btn-schedule{flex:1;min-width:140px;padding:11px 18px;border-radius:12px;background:var(--grad-main);border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px;box-shadow:0 4px 20px rgba(108,92,231,.35)}
+.uea-btn-schedule:hover{box-shadow:0 6px 28px rgba(108,92,231,.55);transform:translateY(-1px)}
+.uea-btn-schedule:disabled{opacity:.38;cursor:default;transform:none;box-shadow:none}
+.uea-btn-msg{flex:1;min-width:140px;padding:11px 18px;border-radius:12px;background:rgba(34,197,94,.1);border:1.5px solid rgba(34,197,94,.28);color:#4ade80;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s;display:flex;align-items:center;justify-content:center;gap:7px}
+.uea-btn-msg:hover{background:rgba(34,197,94,.17);border-color:#4ade80;box-shadow:0 4px 16px rgba(34,197,94,.2)}
+.uea-slots-area{padding:0 18px 16px;border-top:1px solid rgba(255,255,255,.07);animation:pf-step-in .3s ease}
+.uea-slots-title{font-size:11px;font-weight:700;color:rgba(162,155,254,.65);text-transform:uppercase;letter-spacing:.08em;margin:12px 0 10px}
+.uea-slots{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.uea-slot{padding:7px 14px;border-radius:99px;border:1.5px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:12px;font-weight:600;color:#c0c0e0;cursor:pointer;transition:all .15s;font-family:var(--font-body)}
+.uea-slot:hover{border-color:rgba(108,92,231,.4);color:#a29bfe;background:rgba(108,92,231,.08)}
+.uea-slot.sel{background:rgba(108,92,231,.2);border-color:#8b7cf8;color:#c4b5fd;box-shadow:0 0 0 1px rgba(108,92,231,.18)}
+.uea-book-btn{width:100%;padding:10px;border-radius:10px;background:var(--grad-main);border:none;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:var(--font-body);transition:all .18s}
+.uea-book-btn:disabled{opacity:.3;cursor:not-allowed}
+.uea-book-btn:not(:disabled):hover{box-shadow:0 4px 18px rgba(108,92,231,.4)}
+.uea-booked{padding:12px 18px;background:linear-gradient(135deg,rgba(34,197,94,.1),rgba(16,185,129,.06));border-top:1px solid rgba(34,197,94,.18);display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#4ade80;line-height:1.6;animation:pf-step-in .3s ease}
+.uea-msg-sent{padding:12px 18px;background:linear-gradient(135deg,rgba(59,130,246,.09),rgba(6,182,212,.06));border-top:1px solid rgba(59,130,246,.2);display:flex;align-items:flex-start;gap:10px;font-size:13px;color:#60a5fa;line-height:1.6;animation:pf-step-in .3s ease}
+body.light .uea-hero{border-bottom-color:#F4F4FA}
+body.light .uea-online{border-color:white}
+body.light .uea-name{color:#1A1A2E}
+body.light .uea-role{color:#8080A8}
+body.light .uea-bio{color:#3D3D5C;border-bottom-color:#F4F4FA}
+body.light .uea-specs{border-bottom-color:#F4F4FA}
+body.light .uea-spec-label{color:#8080A8}
+body.light .uea-langs{color:#6E6E8A;border-bottom-color:#F4F4FA}
+body.light .uea-response-time{color:#6E6E8A;border-bottom-color:#F4F4FA}
+body.light .uea-stat{color:#6E6E8A}
+body.light .uea-stat-sep{color:#C5C5D9}
+body.light .uea-slot{background:white;border-color:#C5C5D9;color:#3D3D5C}
+body.light .uea-slot:hover{background:#EEF0FF;border-color:#a29bfe;color:#5B4FCF}
+body.light .uea-slot.sel{background:#EEF0FF;border-color:#7c6fff;color:#4338ca}
+body.light .uea-btn-msg{background:rgba(21,128,61,.08);border-color:rgba(21,128,61,.28);color:#15803d}
+body.light .uea-btn-msg:hover{background:rgba(21,128,61,.13);border-color:#16a34a}
+body.light .uea-slots-area{border-top-color:#F4F4FA}
+body.light .uea-slots-title{color:#5B4FCF}
+body.light .uea-booked{background:linear-gradient(135deg,#f0fdf4,#f7fff9);border-top-color:#bbf7d0;color:#15803d}
+body.light .uea-msg-sent{background:linear-gradient(135deg,#eff6ff,#f0fdfa);border-top-color:#bae6fd;color:#0369a1}
 </style>
 </head>
 <body>
@@ -683,10 +766,10 @@ body.light .tip-body{color:#3D3D5C}
     <div class="p-avatar">A</div>
     <span class="p-name">Aisha</span>
     <div class="ptags">
-      <span class="ptag">3.8 GPA</span>
-      <span class="ptag">CS · Data Science</span>
-      <span class="ptag">USA · UK · Canada</span>
-      <span class="ptag">$50–60k / yr</span>
+      <span class="ptag" id="ptag-gpa">3.8 GPA</span>
+      <span class="ptag" id="ptag-courses">CS · Data Science</span>
+      <span class="ptag" id="ptag-countries">USA · UK · Canada</span>
+      <span class="ptag" id="ptag-budget">$50–60k / yr</span>
     </div>
   </div>
   <div class="nav-gap"></div>
@@ -790,6 +873,8 @@ body.light .tip-body{color:#3D3D5C}
     <button class="sug-btn" onclick="q('What do I need for a UK application checklist')">✅ UK application checklist</button>
     <button class="sug-btn" onclick="q('Tell me about Imperial College London')">🏫 Imperial College</button>
     <button class="sug-btn" onclick="q('How do I write a strong personal statement?')">✍️ Personal statement tips</button>
+    <button class="sug-btn" onclick="q('Build my profile')">👤 Build my profile</button>
+    <button class="sug-btn" onclick="q('Connect me with my guide')">🤝 My Guide</button>
   </div>
   <div class="attach-bar" id="attach-bar"></div>
   <div class="voice-bar" id="voice-bar">
@@ -1165,9 +1250,212 @@ function buildStructuredTextData(q) {
   };
 }
 
+// ── Profile Setup ─────────────────────────────────────────────
+const PF_Qs = [
+  {key:'courses', question:'What subjects are you interested in studying?',    multi:true,  hint:'Select all that apply',
+   options:['Computer Science','Data Science','Engineering','Business','Medicine','Law','Economics','Psychology','Architecture','Mathematics']},
+  {key:'countries',question:'Which countries are you targeting?',              multi:true,  hint:'Select all that apply',
+   options:['USA','UK','Canada','Australia','Germany','Netherlands','Singapore','New Zealand']},
+  {key:'budget',  question:"What's your annual budget for tuition + living?",  multi:false, hint:'Select one',
+   options:['Under $30k','$30k–$45k','$45k–$60k','$60k–$80k','Over $80k']},
+  {key:'gpa',     question:"What's your current GPA or expected 12th grade score?", multi:false, hint:'Select one',
+   options:['Below 3.0 / 60%','3.0–3.4 / 60–70%','3.5–3.7 / 70–80%','3.8–3.9 / 80–90%','4.0 / 90%+']},
+];
+
+function renderProfileSetup() {
+  const c = document.createElement('div');
+  c.className = 'vc';
+  c.innerHTML = '<div class="vc-accent"></div>';
+  let step = 0;
+  const selections = {};
+
+  function render() {
+    while (c.children.length > 1) c.removeChild(c.lastChild);
+
+    if (step >= PF_Qs.length) {
+      c.innerHTML += `
+        <div class="vc-ch"><div class="eyebrow">Profile Complete</div><h3>Your profile is all set!</h3></div>
+        <div class="pf-body">
+          <div class="pf-chips">
+            ${[`📚 ${(selections.courses||[]).join(', ')||'—'}`,`📍 ${(selections.countries||[]).join(', ')||'—'}`,`💰 ${selections.budget||'—'}`,`📋 GPA ${selections.gpa||'—'}`]
+              .map(t=>`<span class="pf-chip sel">${esc(t)}</span>`).join('')}
+          </div>
+        </div>
+        <div class="pf-done"><span class="pf-done-icon" style="font-size:20px;flex-shrink:0">✅</span><span>Profile saved. Saige will now use this to personalise all recommendations, fit assessments, and school comparisons.</span></div>`;
+      updateProfile(selections);
+      return;
+    }
+
+    const q = PF_Qs[step];
+    const pct = Math.round((step / PF_Qs.length) * 100);
+    const sel = selections[q.key] || (q.multi ? [] : null);
+
+    c.innerHTML += `
+      <div class="pf-header">
+        <div class="pf-progress"><div class="pf-bar" style="width:${pct}%"></div></div>
+        <div class="pf-step-label">Step ${step+1} of ${PF_Qs.length}</div>
+        <div class="pf-question">${esc(q.question)}</div>
+      </div>
+      <div class="pf-body">
+        <div class="pf-hint">${esc(q.hint)}</div>
+        <div class="pf-chips" id="pf-chips-inner"></div>
+        <button class="pf-next" id="pf-next-btn" disabled>${step === PF_Qs.length-1 ? 'Save profile →' : 'Next →'}</button>
+      </div>`;
+
+    const chipsEl = c.querySelector('#pf-chips-inner');
+    q.options.forEach(opt => {
+      const btn = document.createElement('button');
+      btn.className = 'pf-chip' + ((q.multi ? (sel||[]).includes(opt) : sel === opt) ? ' sel' : '');
+      btn.textContent = opt;
+      btn.onclick = () => {
+        if (q.multi) {
+          const arr = selections[q.key] = selections[q.key] || [];
+          const idx = arr.indexOf(opt);
+          if (idx >= 0) arr.splice(idx, 1); else arr.push(opt);
+        } else {
+          selections[q.key] = opt;
+        }
+        render();
+        // single-select: auto-advance after brief flash
+        if (!q.multi) setTimeout(() => { step++; render(); }, 260);
+      };
+      chipsEl.appendChild(btn);
+    });
+
+    const nextBtn = c.querySelector('#pf-next-btn');
+    const hasSel = q.multi ? (selections[q.key]||[]).length > 0 : !!selections[q.key];
+    nextBtn.disabled = !hasSel;
+    if (!q.multi) nextBtn.style.display = 'none'; // auto-advance handles it
+    nextBtn.onclick = () => { if (!nextBtn.disabled) { step++; render(); } };
+  }
+
+  render();
+  return c;
+}
+
+function updateProfile(sel) {
+  if (sel.courses && sel.courses.length) S.courses = sel.courses;
+  if (sel.countries && sel.countries.length) S.countries = sel.countries;
+  if (sel.budget) {
+    const bMap = {'Under $30k':'Under $30k/yr','$30k–$45k':'$30k–$45k/yr','$45k–$60k':'$45k–$60k/yr','$60k–$80k':'$60k–$80k/yr','Over $80k':'Over $80k/yr'};
+    const bNumMap = {'Under $30k':25000,'$30k–$45k':37500,'$45k–$60k':52500,'$60k–$80k':70000,'Over $80k':90000};
+    S.budget = bMap[sel.budget] || sel.budget;
+    S.budgetN = bNumMap[sel.budget] || S.budgetN;
+  }
+  if (sel.gpa) {
+    const gMap = {'Below 3.0 / 60%':'2.8/4.0','3.0–3.4 / 60–70%':'3.2/4.0','3.5–3.7 / 70–80%':'3.6/4.0','3.8–3.9 / 80–90%':'3.8/4.0','4.0 / 90%+':'4.0/4.0'};
+    const gNumMap = {'Below 3.0 / 60%':2.8,'3.0–3.4 / 60–70%':3.2,'3.5–3.7 / 70–80%':3.6,'3.8–3.9 / 80–90%':3.85,'4.0 / 90%+':4.0};
+    S.gpa = gMap[sel.gpa] || S.gpa;
+    S.gpaN = gNumMap[sel.gpa] || S.gpaN;
+  }
+  const gpaEl=document.getElementById('ptag-gpa');
+  const coursesEl=document.getElementById('ptag-courses');
+  const countriesEl=document.getElementById('ptag-countries');
+  const budgetEl=document.getElementById('ptag-budget');
+  if(gpaEl) gpaEl.textContent = S.gpa;
+  if(coursesEl) coursesEl.textContent = S.courses.join(' · ');
+  if(countriesEl) countriesEl.textContent = S.countries.join(' · ');
+  if(budgetEl) {
+    const b = S.budget.replace('/yr','').replace('$','$').trim();
+    budgetEl.textContent = b + ' / yr';
+  }
+}
+
+// ── UEA / Guide Card ─────────────────────────────────────────
+const DEMO_GUIDE = {
+  initials:'PN', name:'Priya Nair', role:'University Enrollment Advisor',
+  rating:'4.9', students:143, experience:'6 years',
+  languages:['English','Hindi','Tamil'],
+  bio:"Hi Aisha! I'm your assigned counselor on Cialfo. I specialise in CS and Data Science applications to the US and UK, and I've helped over 140 students build strong profiles and land offers at competitive universities. I'm here to support you at every step — from building your shortlist to submitting your final application.",
+  specs:['Computer Science','US Admissions','UK Admissions','Data Science','Engineering','Canada'],
+  responseTime:'Typically responds in 2 hours',
+  slots:['Today · 3:00 PM','Today · 5:00 PM','Tomorrow · 10:00 AM','Tomorrow · 2:00 PM','Thu · 11:00 AM'],
+};
+
+function renderUEACard() {
+  const g = DEMO_GUIDE;
+  const c = document.createElement('div');
+  c.className = 'vc';
+  const specs = g.specs.map(s=>`<span class="pill">${esc(s)}</span>`).join('');
+  c.innerHTML = `
+    <div class="vc-accent"></div>
+    <div class="vc-ch"><div class="eyebrow">Your Guide</div><h3>${esc(g.name)}</h3></div>
+    <div class="uea-hero">
+      <div class="uea-avatar">${esc(g.initials)}<div class="uea-online"></div></div>
+      <div class="uea-info">
+        <div class="uea-name">${esc(g.name)}</div>
+        <div class="uea-role">${esc(g.role)}</div>
+        <div class="uea-meta">
+          <span class="uea-star">⭐ ${esc(g.rating)}</span>
+          <span class="uea-stat-sep">·</span>
+          <span class="uea-stat">👥 ${g.students} students</span>
+          <span class="uea-stat-sep">·</span>
+          <span class="uea-stat">🎓 ${esc(g.experience)}</span>
+        </div>
+      </div>
+    </div>
+    <div class="uea-bio">${esc(g.bio)}</div>
+    <div class="uea-specs"><div class="uea-spec-label">Specialises in</div><div class="pills">${specs}</div></div>
+    <div class="uea-langs">🌐 <strong>Languages:</strong>&nbsp;${g.languages.join(', ')}</div>
+    <div class="uea-response-time"><span class="uea-rt-icon">💬</span>${esc(g.responseTime)}</div>
+    <div class="uea-actions">
+      <button class="uea-btn-schedule">📅 Schedule a call</button>
+      <button class="uea-btn-msg">💬 Message now</button>
+    </div>`;
+
+  const actionsEl = c.querySelector('.uea-actions');
+  const schedBtn = actionsEl.querySelector('.uea-btn-schedule');
+  const msgBtn = actionsEl.querySelector('.uea-btn-msg');
+
+  schedBtn.onclick = () => {
+    schedBtn.disabled = true;
+    const slotsArea = document.createElement('div');
+    slotsArea.className = 'uea-slots-area';
+    slotsArea.innerHTML = `
+      <div class="uea-slots-title">Pick a time for your 30-min discovery call</div>
+      <div class="uea-slots"></div>
+      <button class="uea-book-btn" disabled>Confirm booking</button>`;
+    actionsEl.insertAdjacentElement('beforebegin', slotsArea);
+
+    let selectedSlot = null;
+    const slotsEl = slotsArea.querySelector('.uea-slots');
+    g.slots.forEach(slot => {
+      const btn = document.createElement('button');
+      btn.className = 'uea-slot'; btn.textContent = slot;
+      btn.onclick = () => {
+        slotsEl.querySelectorAll('.uea-slot').forEach(b=>b.classList.remove('sel'));
+        btn.classList.add('sel'); selectedSlot = slot;
+        slotsArea.querySelector('.uea-book-btn').disabled = false;
+      };
+      slotsEl.appendChild(btn);
+    });
+
+    slotsArea.querySelector('.uea-book-btn').onclick = () => {
+      if (!selectedSlot) return;
+      slotsArea.remove(); actionsEl.remove();
+      const booked = document.createElement('div');
+      booked.className = 'uea-booked';
+      booked.innerHTML = `<span style="font-size:20px;flex-shrink:0">🎉</span><span>Discovery call booked for <strong>${esc(selectedSlot)}</strong> — you'll get a calendar invite and WhatsApp confirmation shortly.</span>`;
+      c.appendChild(booked);
+    };
+  };
+
+  msgBtn.onclick = () => {
+    actionsEl.remove();
+    const sent = document.createElement('div');
+    sent.className = 'uea-msg-sent';
+    sent.innerHTML = `<span style="font-size:20px;flex-shrink:0">✅</span><span><strong>${esc(g.name)}</strong> has been notified and will reach out via WhatsApp ${esc(g.responseTime.replace('Typically responds','').trim())}.</span>`;
+    c.appendChild(sent);
+  };
+
+  return c;
+}
+
 // ── Intent detection ─────────────────────────────────────────
 function detectIntent(q) {
   const ql=q.toLowerCase();
+  if(/build.*profile|update.*profile|setup.*profile|my profile|set.*up.*profile|build profile|update profile/.test(ql))return'profile';
+  if(/guide|counselor|counsellor|advisor|uea|connect.*me|my.*guide|meet.*guide|talk.*to.*my|my.*counselor/.test(ql))return'guide';
   if(/\bvs\b|compare|versus|difference between|which is better/.test(ql))return'compare';
   if(/fit for|good for me|chance at|chances at|should i apply|am i a good|right for me/.test(ql))return'fit';
   if(/suggest|recommend|which universities|schools for me|what schools|best schools for me/.test(ql))return'recommend';
@@ -1193,6 +1481,8 @@ function renderFollowUps(questions) {
 
 function getResponse(q) {
   const intent=detectIntent(q);
+  if(intent==='profile')return{type:'visual',data:{visualType:'profile'}};
+  if(intent==='guide')return{type:'visual',data:{visualType:'guide'}};
   if(intent==='compare'){const pair=findTwoSchools(q);if(pair){const field=extractField(q);return{type:'visual',data:buildCompData(pair[0],pair[1],field)};}}
   if(intent==='fit'){const school=findSchool(q);if(school)return{type:'visual',data:buildFitData(school)};}
   if(intent==='recommend')return{type:'visual',data:buildRecData()};
@@ -1724,6 +2014,8 @@ let vcallQuestions=[],vcallIdx=0,vcallPaused=false;
 
 function renderCard(data){
   const vt=data.visualType;
+  if(vt==='profile')return renderProfileSetup();
+  if(vt==='guide')return renderUEACard();
   if(vt==='fit_assessment')return renderFit(data);
   if(vt==='comparison')return renderComp(data);
   if(vt==='recommendations')return renderRec(data);
@@ -1912,15 +2204,7 @@ function send(){
     const resp=getResponse(t);
     let card;
     if(resp.type==='visual'){
-      const vt=resp.data.visualType;
-      if(vt==='fit_assessment')card=renderFit(resp.data);
-      else if(vt==='comparison')card=renderComp(resp.data);
-      else if(vt==='recommendations')card=renderRec(resp.data);
-      else if(vt==='timeline')card=renderTimeline(resp.data);
-      else if(vt==='checklist')card=renderChecklist(resp.data);
-      else if(vt==='school_snapshot')card=renderSnapshot(resp.data);
-      else if(vt==='tips_card')card=renderTips(resp.data);
-      else if(vt==='structured_text')card=renderStructuredText(resp.data);
+      card=renderCard(resp.data);
     }
     if(card)wrap.appendChild(card);
     else{const b=document.createElement('div');b.className='bubble';b.innerHTML=`<p>${esc(String(resp.content||''))}</p>`;wrap.appendChild(b);}
